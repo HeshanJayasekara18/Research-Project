@@ -45,7 +45,7 @@ research(eval): add cross-script ablation results
 
 - Small and focused, and link the related issue or milestone.
 - The description covers what changed, why, how it was tested, and any API contract or data changes.
-- CI must pass: `python -m unittest discover -s tests` and `python scripts/export_openapi.py --check`.
+- CI must pass: `python -m unittest discover -s tests -t .` and `python scripts/export_openapi.py --check`.
 - **API contract changes** (`docs/openapi.json`): adding optional fields is fine. Renaming or removing fields, or changing an enum, needs a new version (`/v2`) and a heads-up to the frontend team.
 - **Research results** (`results/`): never overwrite reported numbers silently. Explain regenerated results in the PR.
 - Squash-merge or merge after review, then delete the merged feature branch.
