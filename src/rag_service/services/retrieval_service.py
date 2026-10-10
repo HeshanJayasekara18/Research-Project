@@ -7,15 +7,15 @@ from __future__ import annotations
 
 import threading
 
-import retrieval
-from retrieval import (DENSE_METHODS, MULTIVIEW_METHODS, MV_BM25_METHOD, MV_HYBRID_METHOD, MV_LABSE_METHOD,
-                       NORM_BM25_METHOD, NORM_LABSE_METHOD, NORMALIZED_METHODS, SEMANTIC_METHOD, RetrievalEngine)
-
-from service import API_VERSION, SERVICE_VERSION
-from service.config import Settings
-from service.errors import ApiError
-from service.schemas import (HealthResponse, NormalizationInfo, RetrievalMethod, RetrievedComment, RetrieveRequest,
-                             RetrieveResponse, ScopeInfo, SemanticStatus, ViewContribution)
+from rag_service import API_VERSION, SERVICE_VERSION
+from rag_service.api.errors import ApiError
+from rag_service.api.schemas import (HealthResponse, NormalizationInfo, RetrievalMethod, RetrievedComment,
+                                     RetrieveRequest, RetrieveResponse, ScopeInfo, SemanticStatus, ViewContribution)
+from rag_service.core.config import Settings
+from rag_service.retrieval import engine as retrieval
+from rag_service.retrieval.engine import (DENSE_METHODS, MULTIVIEW_METHODS, MV_BM25_METHOD, MV_HYBRID_METHOD,
+                                          MV_LABSE_METHOD, NORM_BM25_METHOD, NORM_LABSE_METHOD, NORMALIZED_METHODS,
+                                          SEMANTIC_METHOD, RetrievalEngine)
 
 ENGINE_METHODS = {
     RetrievalMethod.bm25: 'BM25 (lexical)',

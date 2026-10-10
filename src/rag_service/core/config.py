@@ -3,6 +3,13 @@ from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from pathlib import Path
+
+# Repository layout (src/rag_service/core/config.py -> repo root is parents[3]).
+# Requires an editable install (pip install -e .) or running from a checkout.
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+DATA_DIR = Path(os.environ.get('RAG_DATA_DIR') or PROJECT_ROOT / 'data')
+RESULTS_DIR = PROJECT_ROOT / 'research' / 'evaluation' / 'results'
 
 
 def _bool(value: str | None, default: bool) -> bool:

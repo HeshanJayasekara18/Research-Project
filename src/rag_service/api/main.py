@@ -1,4 +1,4 @@
-"""App factory. Run (from this folder):  uvicorn service.main:app --port 8000"""
+"""App factory. Run:  uvicorn rag_service.api.main:app --port 8000   (after pip install -e .)"""
 from __future__ import annotations
 
 import logging
@@ -9,13 +9,13 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from service import SERVICE_VERSION
-from service.config import Settings, load_settings
-from service.errors import install_error_handlers
-from service.routers import v1
-from service.services.retrieval_service import RetrievalService, build_engine
+from rag_service import SERVICE_VERSION
+from rag_service.api.errors import install_error_handlers
+from rag_service.api.routes import v1_router
+from rag_service.core.config import Settings, load_settings
+from rag_service.services.retrieval_service import RetrievalService, build_engine
 
-log = logging.getLogger('service')
+log = logging.getLogger('rag_service')
 _RID = re.compile(r'^[A-Za-z0-9._-]{1,64}$')
 
 
@@ -49,7 +49,7 @@ def create_app(settings: Settings | None = None, engine=None) -> FastAPI:
         app.add_middleware(CORSMiddleware, allow_origins=list(settings.cors_origins),
                            allow_methods=['GET', 'POST'], allow_headers=['Content-Type', 'X-Request-ID'])
     install_error_handlers(app)
-    app.include_router(v1.router)
+    app.include_router(v1_router)
     return app
 
 

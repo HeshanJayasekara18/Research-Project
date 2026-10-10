@@ -11,13 +11,15 @@ import os
 import re
 from collections import Counter, defaultdict
 from functools import lru_cache
-from pathlib import Path
 
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-ROOT = Path(__file__).resolve().parent
-DATA = ROOT / 'data'
+from rag_service.core.config import DATA_DIR, PROJECT_ROOT, RESULTS_DIR
+
+ROOT = PROJECT_ROOT
+DATA = DATA_DIR
+RESULTS = RESULTS_DIR
 LABSE_INDEX = DATA / 'labse_index.npz'
 # Override with env var SINGLISH_LABSE_MODEL (e.g. a local folder path) if needed.
 LABSE_MODEL = os.environ.get('SINGLISH_LABSE_MODEL', 'sentence-transformers/LaBSE')
@@ -43,7 +45,7 @@ def load_labse_model(name: str = LABSE_MODEL):
         from sentence_transformers import SentenceTransformer
     except ImportError as exc:
         raise RuntimeError('sentence-transformers is not installed. '
-                           'Run: pip install -r requirements-semantic.txt') from exc
+                           'Run: pip install -e ".[semantic]"') from exc
     try:  # offline first: avoids network calls once weights are cached
         return SentenceTransformer(name, device='cpu', local_files_only=True)
     except Exception:
@@ -138,7 +140,7 @@ class RetrievalEngine:
     def normalizer(self):
         """Lazily built Singlish->Sinhala normaliser (lexicon = this corpus)."""
         if self._normalizer is None:
-            from normalization import from_corpus
+            from rag_service.retrieval.normalization import from_corpus
             self._normalizer = from_corpus(self.docs)
         return self._normalizer
 
@@ -160,12 +162,12 @@ class RetrievalEngine:
         if self._semantic is not None:
             return
         if not LABSE_INDEX.exists():
-            raise RuntimeError('LaBSE index not built. Run: python build_labse_index.py')
+            raise RuntimeError('LaBSE index not built. Run: python scripts/build_labse_index.py')
         archive = np.load(LABSE_INDEX, allow_pickle=False)
         ids = archive['document_ids'].astype(str).tolist()
         if ids != self.ids:
             raise RuntimeError('LaBSE index document IDs differ from the active corpus '
-                               '(corpus changed?). Rebuild: python build_labse_index.py')
+                               '(corpus changed?). Rebuild: python scripts/build_labse_index.py')
         model_name = str(archive['model_name']) if 'model_name' in archive.files else LABSE_MODEL
         emb = np.asarray(archive['embeddings'], dtype=np.float32)
         # Re-normalise after float16 storage so dot product == cosine similarity.
@@ -200,7 +202,7 @@ class RetrievalEngine:
         ran. If normalisation failed or changed nothing, ONLY original-query views
         are used (no second representation is fabricated).
         """
-        from fusion import DEFAULT_K, rrf
+        from rag_service.retrieval.fusion import DEFAULT_K, rrf
         k = DEFAULT_K if k is None else k
         norm = self.normalize(query)
         use_norm = norm.status in ('normalized', 'partial') and norm.normalized != query.strip()

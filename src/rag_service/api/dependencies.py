@@ -10,9 +10,9 @@ import hmac
 
 from fastapi import Header, Request
 
-from service.config import Settings
-from service.errors import ApiError
-from service.services.retrieval_service import RetrievalService
+from rag_service.api.errors import ApiError
+from rag_service.core.config import Settings
+from rag_service.services.retrieval_service import RetrievalService
 
 
 def get_settings(request: Request) -> Settings:

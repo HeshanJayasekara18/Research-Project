@@ -1,4 +1,4 @@
-"""Pydantic models = the public v1 JSON contract (mirrored in docs/openapi.json).
+"""Retrieval request/response models: part of the public v1 contract (docs/openapi.json).
 
 Contract rules: field names are snake_case; adding optional response fields is
 non-breaking; renaming/removing fields or enum values requires /v2.
@@ -96,32 +96,3 @@ class RetrieveResponse(BaseModel):
     results: list[RetrievedComment]
     result_count: int
     notice: str = Field(description='Results are retrieved candidates, not verified evidence or generated answers.')
-
-
-class SemanticStatus(BaseModel):
-    index_present: bool
-    loaded: bool
-
-
-class HealthResponse(BaseModel):
-    status: Literal['ok', 'degraded']
-    service: str
-    version: str
-    api_version: str
-    engine_ready: bool
-    corpus_documents: int
-    videos: int
-    semantic: SemanticStatus
-    auth_enabled: bool
-
-
-class ErrorBody(BaseModel):
-    code: str = Field(description='Machine-readable, e.g. invalid_request, unauthorized, video_not_found, '
-                                  'global_scope_disabled, method_unavailable, engine_not_ready, internal_error')
-    message: str
-    request_id: str
-    details: list[dict] | None = None
-
-
-class ErrorResponse(BaseModel):
-    error: ErrorBody
