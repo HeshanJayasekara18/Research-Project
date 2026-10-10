@@ -21,9 +21,10 @@ Backend examples: `feat/c3-fastapi-service`, `feat/c3-retrieval-api`, `feat/c3-c
 Frontend repository prefixes by component: `c1` Market Research, `c2` Video Prediction, `c3` Knowledge Assistant, `c4` Analytics. For example: `feat/c3-knowledge-assistant-ui`, `feat/c3-video-selector`, `feat/c3-retrieval-api-integration`, `feat/c3-evidence-display`.
 
 Rules:
-- Create a branch only when its work starts. Keep it short-lived and branch from the latest base.
-- `main` is protected: no direct pushes, no force-pushes, changes via Pull Request only.
-- The remote also has a `development` branch. Use it as the PR target **only if the team has agreed on a dev-integration workflow**. Otherwise target `main`.
+- Create a branch only when its work starts. Keep it short-lived.
+- `main` and `development` are protected: no direct pushes, no force-pushes, changes via Pull Request only.
+- **Feature branches target `development`** (integration branch). `development` is merged into `main` through a reviewed release PR, and only when it is stable and CI is green.
+- Branch from the latest `development`.
 - Never rewrite shared history (`push --force`, rebasing pushed branches) and never delete or rename other people's branches.
 
 ## Commits
