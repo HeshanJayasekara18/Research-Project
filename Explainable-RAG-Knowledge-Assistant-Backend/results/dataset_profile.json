@@ -1,0 +1,13 @@
+{
+  "original_rows": 11176,
+  "same_video_text_duplicates": 821,
+  "empty_comments": 12,
+  "rows_without_valid_video_id": 2,
+  "clean_corpus_rows": 10343,
+  "distinct_valid_videos": 48,
+  "seed_pairs": 366,
+  "seed_pairs_exact_text_matched": 128,
+  "seed_pairs_unmatched": 238,
+  "unique_seed_query_strings": 241,
+  "verified_relevance_labels": 0
+}

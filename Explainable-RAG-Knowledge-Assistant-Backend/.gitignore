@@ -1,0 +1,32 @@
+# Python caches / environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Credentials (never commit)
+.env
+.env.*
+!.env.example
+*.key
+secrets*.json
+
+# Large derived artifacts (rebuild with: python build_labse_index.py)
+data/labse_index.npz
+*.tmp.npz
+
+# Raw YouTube export: contains public author handles (keep local/private)
+data/youtube_comments_multiple.csv
+
+# Local backups
+backups/
+
+# Gradio runtime files
+.gradio/
+flagged/
+
+# Test / tooling caches
+.pytest_cache/
+.coverage
+htmlcov/
+tests/_tmp_index.npz

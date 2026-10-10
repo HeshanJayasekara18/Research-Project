@@ -1,0 +1,44 @@
+{
+  "warning": "Exploratory, incomplete qrels; queries may be written from documents. NOT held-out nDCG/Recall.",
+  "eligible_unique_queries": 82,
+  "methods": {
+    "BM25 (lexical)": {
+      "known_positive_hit_at_1": 0.1098,
+      "known_positive_hit_at_10": 0.2317,
+      "queries_with_hit_10": 19,
+      "queries_evaluated": 82
+    },
+    "Character TF-IDF": {
+      "known_positive_hit_at_1": 0.1341,
+      "known_positive_hit_at_10": 0.2561,
+      "queries_with_hit_10": 21,
+      "queries_evaluated": 82
+    },
+    "LaBSE (semantic)": {
+      "known_positive_hit_at_1": 0.0244,
+      "known_positive_hit_at_10": 0.1098,
+      "queries_with_hit_10": 9,
+      "queries_evaluated": 82
+    }
+  },
+  "sample_bm25_hits": [
+    "Bandi full magic mix eka kade ganna thiyenawada?",
+    "Wetakolu uyaddi dara ain karanna oneda?",
+    "Chicken thambapu wathura (stock) kema walata danna hodaida?",
+    "Magic mix eka outstation (Ampara/Nittambuwa) delivery karanawada?",
+    "Wetakolu uyaddi poththa ain karanna oneda?",
+    "Apilage anith products wage malu ambul thiyal hadanna kiyala request thiyenawada?",
+    "Me hadapu eka hariyata biriyani ekak nemei, nikan masui bathui wage kiyala minissu kiyanawada?",
+    "Ape channel eke gama (village) koheda thiyenne kiyala minissu ahanawada?"
+  ],
+  "sample_bm25_misses": [
+    "podi mudalak dala loku profit ekak ganna puluwanda business ekakin?",
+    "Anuradhapura paththe oyage products ganna thiyenawada?",
+    "Oya andum ganne kohenda?",
+    "Video eke adupadu (waradi) monawada kattiya kiyanne?",
+    "Uncle ge videos baladdi kattiya asama de mokakda?",
+    "Recipe eka gena kattiya ahana prashna monawada?",
+    "Kattiya mawa kawda kiyala hithalada channel ekata enne?",
+    "Video eka karapu thene (location) gena minissu ahanawada?"
+  ]
+}

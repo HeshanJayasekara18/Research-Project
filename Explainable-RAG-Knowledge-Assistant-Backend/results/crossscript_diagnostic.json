@@ -1,0 +1,269 @@
+{
+  "warning": "Exploratory: unverified known-positive seed pairs, incomplete qrels, queries may be written from the documents; variants are synthetic. NOT nDCG/Recall on an independent benchmark.",
+  "variant_rules": {
+    "consonant": [
+      [
+        "th",
+        "t"
+      ],
+      [
+        "dh",
+        "d"
+      ],
+      [
+        "w",
+        "v"
+      ]
+    ],
+    "vowel": [
+      [
+        "aa",
+        "a"
+      ],
+      [
+        "ee",
+        "i"
+      ],
+      [
+        "oo",
+        "u"
+      ],
+      [
+        "(?<=[a-z])i\\b",
+        "ee"
+      ]
+    ]
+  },
+  "methods": {
+    "BM25 (lexical)": {
+      "all_original_queries": {
+        "n_queries": 82,
+        "known_positive_hit_at_1": 0.1098,
+        "known_positive_hit_at_10": 0.2317,
+        "known_positive_mrr_at_10": 0.1579
+      },
+      "singlish_to_latin": {
+        "n_queries": 36,
+        "known_positive_hit_at_1": 0.2222,
+        "known_positive_hit_at_10": 0.5,
+        "known_positive_mrr_at_10": 0.3318
+      },
+      "singlish_to_sinhala": {
+        "n_queries": 57,
+        "known_positive_hit_at_1": 0.0175,
+        "known_positive_hit_at_10": 0.0175,
+        "known_positive_mrr_at_10": 0.0175
+      },
+      "spelling_variants": {
+        "n_queries": 135,
+        "known_positive_hit_at_1": 0.0963,
+        "known_positive_hit_at_10": 0.2148,
+        "known_positive_mrr_at_10": 0.1305
+      },
+      "variant_vs_original_top10_jaccard": 0.5975
+    },
+    "Character TF-IDF": {
+      "all_original_queries": {
+        "n_queries": 82,
+        "known_positive_hit_at_1": 0.1341,
+        "known_positive_hit_at_10": 0.2561,
+        "known_positive_mrr_at_10": 0.1762
+      },
+      "singlish_to_latin": {
+        "n_queries": 36,
+        "known_positive_hit_at_1": 0.3056,
+        "known_positive_hit_at_10": 0.5833,
+        "known_positive_mrr_at_10": 0.4014
+      },
+      "singlish_to_sinhala": {
+        "n_queries": 57,
+        "known_positive_hit_at_1": 0.0,
+        "known_positive_hit_at_10": 0.0,
+        "known_positive_mrr_at_10": 0.0
+      },
+      "spelling_variants": {
+        "n_queries": 135,
+        "known_positive_hit_at_1": 0.1185,
+        "known_positive_hit_at_10": 0.2222,
+        "known_positive_mrr_at_10": 0.1512
+      },
+      "variant_vs_original_top10_jaccard": 0.5143
+    },
+    "LaBSE (semantic)": {
+      "all_original_queries": {
+        "n_queries": 82,
+        "known_positive_hit_at_1": 0.0244,
+        "known_positive_hit_at_10": 0.1098,
+        "known_positive_mrr_at_10": 0.0438
+      },
+      "singlish_to_latin": {
+        "n_queries": 36,
+        "known_positive_hit_at_1": 0.0556,
+        "known_positive_hit_at_10": 0.1667,
+        "known_positive_mrr_at_10": 0.0859
+      },
+      "singlish_to_sinhala": {
+        "n_queries": 57,
+        "known_positive_hit_at_1": 0.0,
+        "known_positive_hit_at_10": 0.0526,
+        "known_positive_mrr_at_10": 0.0088
+      },
+      "spelling_variants": {
+        "n_queries": 135,
+        "known_positive_hit_at_1": 0.0148,
+        "known_positive_hit_at_10": 0.0815,
+        "known_positive_mrr_at_10": 0.027
+      },
+      "variant_vs_original_top10_jaccard": 0.5687
+    }
+  },
+  "examples": [
+    {
+      "query": "podi mudalak dala loku profit ekak ganna puluwanda business ekakin?",
+      "variants": [
+        "podi mudalak dala loku profit ekak ganna puluvanda business ekakin?",
+        "podee mudalak dala loku profit ekak ganna puluwanda business ekakin?"
+      ],
+      "top1": {
+        "BM25 (lexical)": {
+          "document_id": "DAEDC95935BE5",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 13.4087,
+          "comment": "Concrete ekak Dala tiyena gedara uda taattuwa hadanna puluwanda mehema"
+        },
+        "Character TF-IDF": {
+          "document_id": "D5C9CE75CBFA2",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 0.3161,
+          "comment": "Math business ekak patan gnna inne.kiynna puluwnda aduwata gnna puluwan please tikak"
+        },
+        "LaBSE (semantic)": {
+          "document_id": "DC721803B8694",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 0.6461,
+          "comment": "Language eka igenagena ena eken benefit ekak tiyanawada job ekak wage hoyagaddi?"
+        }
+      }
+    },
+    {
+      "query": "Anuradhapura paththe oyage products ganna thiyenawada?",
+      "variants": [
+        "anuradapura patte oyage products ganna tiyenavada?"
+      ],
+      "top1": {
+        "BM25 (lexical)": {
+          "document_id": "DFBEE84C85A41",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 10.6425,
+          "comment": "Original products ganna place ekk kiynnko"
+        },
+        "Character TF-IDF": {
+          "document_id": "D556904F463E7",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 0.3653,
+          "comment": "Anuradapura patte waga karanna puluwanda iguru"
+        },
+        "LaBSE (semantic)": {
+          "document_id": "D53B8163A2820",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 0.6203,
+          "comment": "Akki kohenda authetic ordinary products gnna tiyenne?"
+        }
+      }
+    },
+    {
+      "query": "Video eke adupadu (waradi) monawada kattiya kiyanne?",
+      "variants": [
+        "video eke adupadu (varadi) monavada kattiya kiyanne?",
+        "video eke adupadu (waradee) monawada kattiya kiyanne?"
+      ],
+      "top1": {
+        "BM25 (lexical)": {
+          "document_id": "DC67AEC4A33D2",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 12.5749,
+          "comment": "Mokakda block account ekak kiyanne ... Eke video ekak karanna barida"
+        },
+        "Character TF-IDF": {
+          "document_id": "D84F6A332924D",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 0.3004,
+          "comment": "Akka Bara Adu wenna Kettu wenna Oya Karanne monda kiyala kiyannako🤗🤔"
+        },
+        "LaBSE (semantic)": {
+          "document_id": "D32E870811408",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 0.7775,
+          "comment": "Vidarashana bawanawa genat video eka krnnna puliwnd?"
+        }
+      }
+    },
+    {
+      "query": "Uncle ge videos baladdi kattiya asama de mokakda?",
+      "variants": [
+        "uncle ge videos baladdee kattiya asama de mokakda?"
+      ],
+      "top1": {
+        "BM25 (lexical)": {
+          "document_id": "DADEEC235E72E",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 11.2844,
+          "comment": "2026 apu kattiya Koo..."
+        },
+        "Character TF-IDF": {
+          "document_id": "DC9DA0FF73568",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 0.2342,
+          "comment": "Handiye Kade nama mokakda bro?"
+        },
+        "LaBSE (semantic)": {
+          "document_id": "DC1A0FCD34DA8",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 0.7309,
+          "comment": "Ausbildung gana video ekak genna plwnda?"
+        }
+      }
+    },
+    {
+      "query": "Recipe eka gena kattiya ahana prashna monawada?",
+      "variants": [
+        "recipe eka gena kattiya ahana prashna monavada?"
+      ],
+      "top1": {
+        "BM25 (lexical)": {
+          "document_id": "D4E000E4C6A78",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 11.894,
+          "comment": "Thank you me recipe eka dunnata😊❤"
+        },
+        "Character TF-IDF": {
+          "document_id": "D5052AFD9A4D5",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 0.2964,
+          "comment": "biththara mix karala hadana kaha bath recipe eka one.."
+        },
+        "LaBSE (semantic)": {
+          "document_id": "D731C53E023AB",
+          "is_known_positive": false,
+          "script": "latin",
+          "score": 0.6252,
+          "comment": "Hoda eguru beja ganne kohenda ?පිළියන්දල pathte thiyanawada"
+        }
+      }
+    }
+  ]
+}

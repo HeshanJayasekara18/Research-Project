@@ -1,0 +1,361 @@
+{
+  "warning": "Known-positive Hit@k/MRR@10 on unverified seed pairs (incomplete qrels; queries may have been written from the comments). Audit is an assistant draft pending human confirmation. No significance testing; small n.",
+  "config": {
+    "k": 60,
+    "depth": 50
+  },
+  "audit_label_counts": {
+    "correct": 95,
+    "partial": 17,
+    "incorrect": 13,
+    "uncertain": 3
+  },
+  "results": {
+    "seed_all": {
+      "BM25 (lexical)": {
+        "all_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.1098,
+          "known_positive_hit_at_10": 0.2317,
+          "known_positive_mrr_at_10": 0.1579
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.2222,
+          "known_positive_hit_at_10": 0.5,
+          "known_positive_mrr_at_10": 0.3318
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.0175,
+          "known_positive_hit_at_10": 0.0175,
+          "known_positive_mrr_at_10": 0.0175
+        }
+      },
+      "Normalized query -> BM25 (experimental)": {
+        "all_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.1463,
+          "known_positive_hit_at_10": 0.3902,
+          "known_positive_mrr_at_10": 0.222
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.0833,
+          "known_positive_hit_at_10": 0.1944,
+          "known_positive_mrr_at_10": 0.119
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.1579,
+          "known_positive_hit_at_10": 0.4386,
+          "known_positive_mrr_at_10": 0.2442
+        }
+      },
+      "Multi-view Retrieval (Experimental): BM25 original + normalized": {
+        "all_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.1098,
+          "known_positive_hit_at_10": 0.439,
+          "known_positive_mrr_at_10": 0.2158
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.1944,
+          "known_positive_hit_at_10": 0.5278,
+          "known_positive_mrr_at_10": 0.3035
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.0351,
+          "known_positive_hit_at_10": 0.3158,
+          "known_positive_mrr_at_10": 0.1231
+        }
+      },
+      "LaBSE (semantic)": {
+        "all_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.0244,
+          "known_positive_hit_at_10": 0.1098,
+          "known_positive_mrr_at_10": 0.0438
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.0556,
+          "known_positive_hit_at_10": 0.1667,
+          "known_positive_mrr_at_10": 0.0859
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.0,
+          "known_positive_hit_at_10": 0.0526,
+          "known_positive_mrr_at_10": 0.0088
+        }
+      },
+      "Normalized query -> LaBSE (experimental)": {
+        "all_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.1341,
+          "known_positive_hit_at_10": 0.378,
+          "known_positive_mrr_at_10": 0.2075
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.0556,
+          "known_positive_hit_at_10": 0.1944,
+          "known_positive_mrr_at_10": 0.091
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.1579,
+          "known_positive_hit_at_10": 0.4211,
+          "known_positive_mrr_at_10": 0.2411
+        }
+      },
+      "Multi-view Retrieval (Experimental): LaBSE original + normalized": {
+        "all_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.0488,
+          "known_positive_hit_at_10": 0.3171,
+          "known_positive_mrr_at_10": 0.1279
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.0556,
+          "known_positive_hit_at_10": 0.25,
+          "known_positive_mrr_at_10": 0.1084
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.0351,
+          "known_positive_hit_at_10": 0.2982,
+          "known_positive_mrr_at_10": 0.1156
+        }
+      },
+      "Multi-view Retrieval (Experimental): hybrid BM25 + LaBSE, original + normalized": {
+        "all_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.1829,
+          "known_positive_hit_at_10": 0.4634,
+          "known_positive_mrr_at_10": 0.2679
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.1667,
+          "known_positive_hit_at_10": 0.4167,
+          "known_positive_mrr_at_10": 0.2384
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.1579,
+          "known_positive_hit_at_10": 0.4211,
+          "known_positive_mrr_at_10": 0.237
+        }
+      }
+    },
+    "audit_correct": {
+      "BM25 (lexical)": {
+        "all_queries": {
+          "n_queries": 72,
+          "known_positive_hit_at_1": 0.125,
+          "known_positive_hit_at_10": 0.2639,
+          "known_positive_mrr_at_10": 0.1798
+        },
+        "singlish_to_latin": {
+          "n_queries": 31,
+          "known_positive_hit_at_1": 0.2581,
+          "known_positive_hit_at_10": 0.5806,
+          "known_positive_mrr_at_10": 0.3853
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 47,
+          "known_positive_hit_at_1": 0.0213,
+          "known_positive_hit_at_10": 0.0213,
+          "known_positive_mrr_at_10": 0.0213
+        }
+      },
+      "Normalized query -> BM25 (experimental)": {
+        "all_queries": {
+          "n_queries": 72,
+          "known_positive_hit_at_1": 0.1667,
+          "known_positive_hit_at_10": 0.4444,
+          "known_positive_mrr_at_10": 0.2528
+        },
+        "singlish_to_latin": {
+          "n_queries": 31,
+          "known_positive_hit_at_1": 0.0968,
+          "known_positive_hit_at_10": 0.2258,
+          "known_positive_mrr_at_10": 0.1382
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 47,
+          "known_positive_hit_at_1": 0.1915,
+          "known_positive_hit_at_10": 0.5319,
+          "known_positive_mrr_at_10": 0.2961
+        }
+      },
+      "Multi-view Retrieval (Experimental): BM25 original + normalized": {
+        "all_queries": {
+          "n_queries": 72,
+          "known_positive_hit_at_1": 0.125,
+          "known_positive_hit_at_10": 0.5,
+          "known_positive_mrr_at_10": 0.2458
+        },
+        "singlish_to_latin": {
+          "n_queries": 31,
+          "known_positive_hit_at_1": 0.2258,
+          "known_positive_hit_at_10": 0.6129,
+          "known_positive_mrr_at_10": 0.3525
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 47,
+          "known_positive_hit_at_1": 0.0426,
+          "known_positive_hit_at_10": 0.383,
+          "known_positive_mrr_at_10": 0.1493
+        }
+      },
+      "LaBSE (semantic)": {
+        "all_queries": {
+          "n_queries": 72,
+          "known_positive_hit_at_1": 0.0278,
+          "known_positive_hit_at_10": 0.125,
+          "known_positive_mrr_at_10": 0.0499
+        },
+        "singlish_to_latin": {
+          "n_queries": 31,
+          "known_positive_hit_at_1": 0.0645,
+          "known_positive_hit_at_10": 0.1935,
+          "known_positive_mrr_at_10": 0.0998
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 47,
+          "known_positive_hit_at_1": 0.0,
+          "known_positive_hit_at_10": 0.0638,
+          "known_positive_mrr_at_10": 0.0106
+        }
+      },
+      "Normalized query -> LaBSE (experimental)": {
+        "all_queries": {
+          "n_queries": 72,
+          "known_positive_hit_at_1": 0.1528,
+          "known_positive_hit_at_10": 0.4028,
+          "known_positive_mrr_at_10": 0.2304
+        },
+        "singlish_to_latin": {
+          "n_queries": 31,
+          "known_positive_hit_at_1": 0.0645,
+          "known_positive_hit_at_10": 0.2258,
+          "known_positive_mrr_at_10": 0.1057
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 47,
+          "known_positive_hit_at_1": 0.1915,
+          "known_positive_hit_at_10": 0.4681,
+          "known_positive_mrr_at_10": 0.2832
+        }
+      },
+      "Multi-view Retrieval (Experimental): LaBSE original + normalized": {
+        "all_queries": {
+          "n_queries": 72,
+          "known_positive_hit_at_1": 0.0556,
+          "known_positive_hit_at_10": 0.3611,
+          "known_positive_mrr_at_10": 0.1457
+        },
+        "singlish_to_latin": {
+          "n_queries": 31,
+          "known_positive_hit_at_1": 0.0645,
+          "known_positive_hit_at_10": 0.2903,
+          "known_positive_mrr_at_10": 0.1259
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 47,
+          "known_positive_hit_at_1": 0.0426,
+          "known_positive_hit_at_10": 0.3617,
+          "known_positive_mrr_at_10": 0.1402
+        }
+      },
+      "Multi-view Retrieval (Experimental): hybrid BM25 + LaBSE, original + normalized": {
+        "all_queries": {
+          "n_queries": 72,
+          "known_positive_hit_at_1": 0.2083,
+          "known_positive_hit_at_10": 0.5278,
+          "known_positive_mrr_at_10": 0.3051
+        },
+        "singlish_to_latin": {
+          "n_queries": 31,
+          "known_positive_hit_at_1": 0.1935,
+          "known_positive_hit_at_10": 0.4839,
+          "known_positive_mrr_at_10": 0.2769
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 47,
+          "known_positive_hit_at_1": 0.1915,
+          "known_positive_hit_at_10": 0.5106,
+          "known_positive_mrr_at_10": 0.2874
+        }
+      }
+    }
+  },
+  "k_sensitivity": {
+    "10": {
+      "all_queries": {
+        "n_queries": 82,
+        "known_positive_hit_at_1": 0.1341,
+        "known_positive_hit_at_10": 0.4634,
+        "known_positive_mrr_at_10": 0.2381
+      },
+      "singlish_to_latin": {
+        "n_queries": 36,
+        "known_positive_hit_at_1": 0.25,
+        "known_positive_hit_at_10": 0.5,
+        "known_positive_mrr_at_10": 0.335
+      },
+      "singlish_to_sinhala": {
+        "n_queries": 57,
+        "known_positive_hit_at_1": 0.0351,
+        "known_positive_hit_at_10": 0.3684,
+        "known_positive_mrr_at_10": 0.1353
+      }
+    },
+    "60": {
+      "all_queries": {
+        "n_queries": 82,
+        "known_positive_hit_at_1": 0.1098,
+        "known_positive_hit_at_10": 0.439,
+        "known_positive_mrr_at_10": 0.2158
+      },
+      "singlish_to_latin": {
+        "n_queries": 36,
+        "known_positive_hit_at_1": 0.1944,
+        "known_positive_hit_at_10": 0.5278,
+        "known_positive_mrr_at_10": 0.3035
+      },
+      "singlish_to_sinhala": {
+        "n_queries": 57,
+        "known_positive_hit_at_1": 0.0351,
+        "known_positive_hit_at_10": 0.3158,
+        "known_positive_mrr_at_10": 0.1231
+      }
+    },
+    "100": {
+      "all_queries": {
+        "n_queries": 82,
+        "known_positive_hit_at_1": 0.1098,
+        "known_positive_hit_at_10": 0.439,
+        "known_positive_mrr_at_10": 0.2138
+      },
+      "singlish_to_latin": {
+        "n_queries": 36,
+        "known_positive_hit_at_1": 0.1944,
+        "known_positive_hit_at_10": 0.5278,
+        "known_positive_mrr_at_10": 0.2989
+      },
+      "singlish_to_sinhala": {
+        "n_queries": 57,
+        "known_positive_hit_at_1": 0.0351,
+        "known_positive_hit_at_10": 0.3158,
+        "known_positive_mrr_at_10": 0.1231
+      }
+    }
+  }
+}

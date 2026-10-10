@@ -1,0 +1,1979 @@
+{
+  "warning": "Reference words are AI-drafted and await native-speaker review; retrieval positives are unverified seed pairs with incomplete qrels. Hit@k/MRR@10 are exploratory; no significance testing; n is small.",
+  "normalizer": "lexicon-rule-v1",
+  "word_quality": {
+    "function": {
+      "n": 28,
+      "correct": 27,
+      "wrong_silent": 1,
+      "wrong_flagged_ambiguous": 0,
+      "abstained": 0,
+      "accuracy": 0.9643
+    },
+    "ALL": {
+      "n": 99,
+      "correct": 94,
+      "wrong_silent": 2,
+      "wrong_flagged_ambiguous": 2,
+      "abstained": 1,
+      "accuracy": 0.9495
+    },
+    "content": {
+      "n": 57,
+      "correct": 54,
+      "wrong_silent": 0,
+      "wrong_flagged_ambiguous": 2,
+      "abstained": 1,
+      "accuracy": 0.9474
+    },
+    "named_entity": {
+      "n": 4,
+      "correct": 3,
+      "wrong_silent": 1,
+      "wrong_flagged_ambiguous": 0,
+      "abstained": 0,
+      "accuracy": 0.75
+    },
+    "english": {
+      "n": 10,
+      "correct": 10,
+      "wrong_silent": 0,
+      "wrong_flagged_ambiguous": 0,
+      "abstained": 0,
+      "accuracy": 1.0
+    }
+  },
+  "word_rows": [
+    {
+      "singlish": "eka",
+      "expected": "එක",
+      "output": "එක",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "එක",
+        "ඒක",
+        "එකා"
+      ]
+    },
+    {
+      "singlish": "kiyala",
+      "expected": "කියලා;කියල",
+      "output": "කියලා",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කියලා",
+        "කියල",
+        "කීයල"
+      ]
+    },
+    {
+      "singlish": "hari",
+      "expected": "හරි",
+      "output": "හරි",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "හරි",
+        "හරී"
+      ]
+    },
+    {
+      "singlish": "kattiya",
+      "expected": "කට්ටිය",
+      "output": "කට්ටිය",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කට්ටිය"
+      ]
+    },
+    {
+      "singlish": "eke",
+      "expected": "එකේ;එකෙ",
+      "output": "එකේ",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "එකේ",
+        "එකෙ",
+        "ඒකෙ",
+        "ඒකේ"
+      ]
+    },
+    {
+      "singlish": "monawada",
+      "expected": "මොනවද;මොනවාද",
+      "output": "මොනවද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "මොනවද",
+        "මොනවාද",
+        "මෝනවද"
+      ]
+    },
+    {
+      "singlish": "thiyenawada",
+      "expected": "තියෙනවද;තියෙනවාද",
+      "output": "තියෙනවද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "තියෙනවද"
+      ]
+    },
+    {
+      "singlish": "ahanawada",
+      "expected": "අහනවද;අහනවාද",
+      "output": "ahanawada",
+      "status": "unresolved",
+      "outcome": "abstained",
+      "alternatives": []
+    },
+    {
+      "singlish": "gana",
+      "expected": "ගැන",
+      "output": "ගැන",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "ගැන",
+        "ගාන",
+        "ගන",
+        "ගාණ"
+      ]
+    },
+    {
+      "singlish": "minissu",
+      "expected": "මිනිස්සු",
+      "output": "මිනිස්සු",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "මිනිස්සු",
+        "මිනිස්සූ"
+      ]
+    },
+    {
+      "singlish": "ekata",
+      "expected": "එකට",
+      "output": "එකට",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "එකට",
+        "ඒකට",
+        "එකාට"
+      ]
+    },
+    {
+      "singlish": "bath",
+      "expected": "බත්",
+      "output": "බත්",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "බත්",
+        "බත",
+        "බාත්"
+      ]
+    },
+    {
+      "singlish": "me",
+      "expected": "මේ;මෙ",
+      "output": "මේ",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "මේ",
+        "මෙ"
+      ]
+    },
+    {
+      "singlish": "wala",
+      "expected": "වල",
+      "output": "වල",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "වල",
+        "වැල"
+      ]
+    },
+    {
+      "singlish": "ekak",
+      "expected": "එකක්",
+      "output": "එකක්",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "එකක්",
+        "එකක",
+        "එකාක්",
+        "ඒකක්"
+      ]
+    },
+    {
+      "singlish": "wage",
+      "expected": "වගේ;වගෙ",
+      "output": "වගේ",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "වගේ",
+        "වගෙ",
+        "වාගේ"
+      ]
+    },
+    {
+      "singlish": "puluwanda",
+      "expected": "පුළුවන්ද;පුලුවන්ද",
+      "output": "පුලුවන්ද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "පුලුවන්ද",
+        "පුළුවන්ද",
+        "පූළුවන්ද"
+      ]
+    },
+    {
+      "singlish": "ganna",
+      "expected": "ගන්න",
+      "output": "ගන්න",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "ගන්න",
+        "ගන්නා",
+        "ගාන්න"
+      ]
+    },
+    {
+      "singlish": "kiyanawada",
+      "expected": "කියනවද;කියනවාද",
+      "output": "කියනවද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කියනවද",
+        "කියනවාද"
+      ]
+    },
+    {
+      "singlish": "kiyanne",
+      "expected": "කියන්නේ;කියන්නෙ",
+      "output": "කියන්නේ",
+      "status": "ambiguous",
+      "outcome": "correct",
+      "alternatives": [
+        "කියන්නේ",
+        "කියන්නෙ"
+      ]
+    },
+    {
+      "singlish": "karanna",
+      "expected": "කරන්න",
+      "output": "කරන්න",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කරන්න"
+      ]
+    },
+    {
+      "singlish": "hoda",
+      "expected": "හොඳ;හොද",
+      "output": "හොද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "හොද",
+        "හොදා"
+      ]
+    },
+    {
+      "singlish": "karala",
+      "expected": "කරලා;කරල",
+      "output": "කරලා",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කරලා",
+        "කරල"
+      ]
+    },
+    {
+      "singlish": "danna",
+      "expected": "දාන්න;දන්න",
+      "output": "දාන්න",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "දාන්න",
+        "දන්න",
+        "දන්නා",
+        "දන්නැ"
+      ]
+    },
+    {
+      "singlish": "karana",
+      "expected": "කරන",
+      "output": "කරන",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කරන",
+        "කාරණා",
+        "කරනා",
+        "කාරනා"
+      ]
+    },
+    {
+      "singlish": "kama",
+      "expected": "කෑම",
+      "output": "කැම",
+      "status": "ambiguous",
+      "outcome": "wrong_flagged_ambiguous",
+      "alternatives": [
+        "කැම",
+        "කම",
+        "කාම"
+      ]
+    },
+    {
+      "singlish": "hadanna",
+      "expected": "හදන්න",
+      "output": "හදන්න",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "හදන්න",
+        "හදන්නැ"
+      ]
+    },
+    {
+      "singlish": "gena",
+      "expected": "ගැන;ගෙන",
+      "output": "ගැන",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "ගැන",
+        "ගෙන",
+        "ගේන"
+      ]
+    },
+    {
+      "singlish": "wena",
+      "expected": "වෙන",
+      "output": "වෙන",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "වෙන"
+      ]
+    },
+    {
+      "singlish": "wadi",
+      "expected": "වැඩි",
+      "output": "වැඩි",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "වැඩි",
+        "වැඩී",
+        "වාඩි"
+      ]
+    },
+    {
+      "singlish": "kaha",
+      "expected": "කහ",
+      "output": "කහ",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කහ",
+        "කහා"
+      ]
+    },
+    {
+      "singlish": "da",
+      "expected": "ද",
+      "output": "ද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "ද",
+        "දා"
+      ]
+    },
+    {
+      "singlish": "mokakda",
+      "expected": "මොකක්ද",
+      "output": "මොකක්ද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "මොකක්ද"
+      ]
+    },
+    {
+      "singlish": "hal",
+      "expected": "හාල්",
+      "output": "හාල්",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "හාල්",
+        "හාල"
+      ]
+    },
+    {
+      "singlish": "hodaida",
+      "expected": "හොඳයිද;හොදයිද",
+      "output": "හොදයිද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "හොදයිද"
+      ]
+    },
+    {
+      "singlish": "walata",
+      "expected": "වලට",
+      "output": "වලට",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "වලට"
+      ]
+    },
+    {
+      "singlish": "kiyana",
+      "expected": "කියන",
+      "output": "කියන",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කියන",
+        "කීයන"
+      ]
+    },
+    {
+      "singlish": "eken",
+      "expected": "එකෙන්",
+      "output": "එකෙන්",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "එකෙන්",
+        "ඒකෙන්"
+      ]
+    },
+    {
+      "singlish": "hadaddi",
+      "expected": "හදද්දි;හදද්දී",
+      "output": "හදද්දි",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "හදද්දි",
+        "හදද්දී"
+      ]
+    },
+    {
+      "singlish": "karanawada",
+      "expected": "කරනවද;කරනවාද",
+      "output": "කරනවද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කරනවද",
+        "කරනවාද"
+      ]
+    },
+    {
+      "singlish": "kohomada",
+      "expected": "කොහොමද",
+      "output": "කොහොමද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කොහොමද",
+        "කොහෝමද"
+      ]
+    },
+    {
+      "singlish": "thiyenne",
+      "expected": "තියෙන්නේ;තියෙන්නෙ",
+      "output": "තියෙන්නේ",
+      "status": "ambiguous",
+      "outcome": "correct",
+      "alternatives": [
+        "තියෙන්නේ",
+        "තියෙන්නෙ",
+        "ටියෙන්නේ",
+        "තියේන්නෙ"
+      ]
+    },
+    {
+      "singlish": "wela",
+      "expected": "වෙලා;වෙල",
+      "output": "වෙලා",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "වෙලා",
+        "වැල",
+        "වෙල",
+        "වේල"
+      ]
+    },
+    {
+      "singlish": "lankawe",
+      "expected": "ලංකාවේ;ලංකාවෙ",
+      "output": "ලන්කාවෙ",
+      "status": "transliterated",
+      "outcome": "wrong_silent",
+      "alternatives": [
+        "ලන්කාවෙ",
+        "ලන්කාවේ"
+      ]
+    },
+    {
+      "singlish": "patan",
+      "expected": "පටන්",
+      "output": "පටන්",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "පටන්",
+        "පටං"
+      ]
+    },
+    {
+      "singlish": "salli",
+      "expected": "සල්ලි",
+      "output": "සල්ලි",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "සල්ලි",
+        "සල්ලී"
+      ]
+    },
+    {
+      "singlish": "dapu",
+      "expected": "දාපු",
+      "output": "දාපු",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "දාපු"
+      ]
+    },
+    {
+      "singlish": "mas",
+      "expected": "මස්",
+      "output": "මාස",
+      "status": "ambiguous",
+      "outcome": "wrong_flagged_ambiguous",
+      "alternatives": [
+        "මාස",
+        "මස්",
+        "මස"
+      ]
+    },
+    {
+      "singlish": "nadda",
+      "expected": "නැද්ද",
+      "output": "නැද්ද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "නැද්ද",
+        "නද්ද",
+        "නැද්දා"
+      ]
+    },
+    {
+      "singlish": "karapu",
+      "expected": "කරපු",
+      "output": "කරපු",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කරපු"
+      ]
+    },
+    {
+      "singlish": "dena",
+      "expected": "දෙන",
+      "output": "දෙන",
+      "status": "ambiguous",
+      "outcome": "correct",
+      "alternatives": [
+        "දෙන",
+        "දැන",
+        "දෙනා"
+      ]
+    },
+    {
+      "singlish": "loku",
+      "expected": "ලොකු",
+      "output": "ලොකු",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "ලොකු",
+        "ලොකූ"
+      ]
+    },
+    {
+      "singlish": "saha",
+      "expected": "සහ",
+      "output": "සහ",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "සහ",
+        "සහා"
+      ]
+    },
+    {
+      "singlish": "nathi",
+      "expected": "නැති",
+      "output": "නැති",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "නැති",
+        "ණැති",
+        "නති",
+        "නැටි"
+      ]
+    },
+    {
+      "singlish": "gama",
+      "expected": "ගම",
+      "output": "ගම",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "ගම",
+        "ගැම"
+      ]
+    },
+    {
+      "singlish": "ona",
+      "expected": "ඕන;ඕනෙ;ඕනේ",
+      "output": "ඕන",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "ඕන",
+        "ඔන",
+        "ඕනා",
+        "ඔනා"
+      ]
+    },
+    {
+      "singlish": "inna",
+      "expected": "ඉන්න",
+      "output": "ඉන්න",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "ඉන්න"
+      ]
+    },
+    {
+      "singlish": "podi",
+      "expected": "පොඩි",
+      "output": "පොඩි",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "පොඩි",
+        "පොඩී"
+      ]
+    },
+    {
+      "singlish": "thiyena",
+      "expected": "තියෙන",
+      "output": "තියෙන",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "තියෙන",
+        "තියේන"
+      ]
+    },
+    {
+      "singlish": "rasa",
+      "expected": "රස",
+      "output": "රස",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "රස"
+      ]
+    },
+    {
+      "singlish": "kanna",
+      "expected": "කන්න",
+      "output": "කන්න",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කන්න"
+      ]
+    },
+    {
+      "singlish": "pramanaya",
+      "expected": "ප්‍රමාණය",
+      "output": "ප්‍රමාණය",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "ප්‍රමාණය"
+      ]
+    },
+    {
+      "singlish": "koheda",
+      "expected": "කොහෙද",
+      "output": "කොහෙද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කොහෙද",
+        "කොහේද",
+        "කෝහේද"
+      ]
+    },
+    {
+      "singlish": "mama",
+      "expected": "මම",
+      "output": "මම",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "මම",
+        "මාමා",
+        "මාම"
+      ]
+    },
+    {
+      "singlish": "ape",
+      "expected": "අපේ;අපෙ",
+      "output": "අපේ",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "අපේ",
+        "අපෙ"
+      ]
+    },
+    {
+      "singlish": "parana",
+      "expected": "පරණ",
+      "output": "පරණ",
+      "status": "ambiguous",
+      "outcome": "correct",
+      "alternatives": [
+        "පරණ",
+        "පරන"
+      ]
+    },
+    {
+      "singlish": "natham",
+      "expected": "නැත්නම්;නැත්තම්",
+      "output": "නැතම්",
+      "status": "transliterated",
+      "outcome": "wrong_silent",
+      "alternatives": [
+        "නැතම්"
+      ]
+    },
+    {
+      "singlish": "balanna",
+      "expected": "බලන්න",
+      "output": "බලන්න",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "බලන්න"
+      ]
+    },
+    {
+      "singlish": "kurudu",
+      "expected": "කුරුදු",
+      "output": "කුරුදු",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "කුරුදු"
+      ]
+    },
+    {
+      "singlish": "wathura",
+      "expected": "වතුර",
+      "output": "වතුර",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "වතුර"
+      ]
+    },
+    {
+      "singlish": "rathu",
+      "expected": "රතු",
+      "output": "රතු",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "රතු"
+      ]
+    },
+    {
+      "singlish": "thel",
+      "expected": "තෙල්",
+      "output": "තෙල්",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "තෙල්"
+      ]
+    },
+    {
+      "singlish": "nisa",
+      "expected": "නිසා",
+      "output": "නිසා",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "නිසා",
+        "නිස"
+      ]
+    },
+    {
+      "singlish": "mokada",
+      "expected": "මොකද",
+      "output": "මොකද",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "මොකද",
+        "මොකාද"
+      ]
+    },
+    {
+      "singlish": "dala",
+      "expected": "දාලා;දාල",
+      "output": "දාලා",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "දාලා",
+        "දාල",
+        "දලා",
+        "දළ"
+      ]
+    },
+    {
+      "singlish": "puluwan",
+      "expected": "පුළුවන්;පුලුවන්",
+      "output": "පුලුවන්",
+      "status": "ambiguous",
+      "outcome": "correct",
+      "alternatives": [
+        "පුලුවන්",
+        "පුළුවන්",
+        "පූලුවන්",
+        "පූලූවන්"
+      ]
+    },
+    {
+      "singlish": "upades",
+      "expected": "උපදෙස්",
+      "output": "උපදෙස්",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "උපදෙස්"
+      ]
+    },
+    {
+      "singlish": "ayata",
+      "expected": "අයට",
+      "output": "අයට",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "අයට"
+      ]
+    },
+    {
+      "singlish": "dewal",
+      "expected": "දේවල්",
+      "output": "දේවල්",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "දේවල්",
+        "දෙවල්",
+        "ඩෙවල්",
+        "දේවල"
+      ]
+    },
+    {
+      "singlish": "saththu",
+      "expected": "සත්තු",
+      "output": "සත්තු",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "සත්තු",
+        "සත්තූ"
+      ]
+    },
+    {
+      "singlish": "oyage",
+      "expected": "ඔයාගේ;ඔයාගෙ",
+      "output": "ඔයාගෙ",
+      "status": "ambiguous",
+      "outcome": "correct",
+      "alternatives": [
+        "ඔයාගෙ",
+        "ඔයාගේ",
+        "ඔයගෙ",
+        "ඔයගේ"
+      ]
+    },
+    {
+      "singlish": "galapena",
+      "expected": "ගැලපෙන",
+      "output": "ගැලපෙන",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "ගැලපෙන",
+        "ගැළපෙන"
+      ]
+    },
+    {
+      "singlish": "samana",
+      "expected": "සමාන",
+      "output": "සමාන",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "සමාන"
+      ]
+    },
+    {
+      "singlish": "anuradhapura",
+      "expected": "අනුරාධපුර",
+      "output": "අනුරාධපුර",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "අනුරාධපුර"
+      ]
+    },
+    {
+      "singlish": "maithripala",
+      "expected": "මෛත්‍රීපාල",
+      "output": "මෛත්‍රීපාල",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "මෛත්‍රීපාල",
+        "මෛත්‍රිපාල"
+      ]
+    },
+    {
+      "singlish": "sirisena",
+      "expected": "සිරිසේන",
+      "output": "සිරිසේන",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "සිරිසේන"
+      ]
+    },
+    {
+      "singlish": "paththe",
+      "expected": "පැත්තේ;පැත්තෙ",
+      "output": "පැත්තෙ",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "පැත්තෙ",
+        "පැත්තේ"
+      ]
+    },
+    {
+      "singlish": "thama",
+      "expected": "තාම;තමා",
+      "output": "තමා",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "තමා",
+        "තාම",
+        "තම",
+        "ටම"
+      ]
+    },
+    {
+      "singlish": "hondai",
+      "expected": "හොඳයි",
+      "output": "හොඳයි",
+      "status": "transliterated",
+      "outcome": "correct",
+      "alternatives": [
+        "හොඳයි"
+      ]
+    },
+    {
+      "singlish": "video",
+      "expected": "KEEP;වීඩියෝ",
+      "output": "video",
+      "status": "kept_english",
+      "outcome": "correct",
+      "alternatives": [
+        "විඩෙඔ"
+      ]
+    },
+    {
+      "singlish": "business",
+      "expected": "KEEP;බිස්නස්",
+      "output": "business",
+      "status": "kept_english",
+      "outcome": "correct",
+      "alternatives": []
+    },
+    {
+      "singlish": "channel",
+      "expected": "KEEP;චැනල්",
+      "output": "channel",
+      "status": "kept_english",
+      "outcome": "correct",
+      "alternatives": []
+    },
+    {
+      "singlish": "comments",
+      "expected": "KEEP",
+      "output": "comments",
+      "status": "kept_english",
+      "outcome": "correct",
+      "alternatives": []
+    },
+    {
+      "singlish": "recipe",
+      "expected": "KEEP",
+      "output": "recipe",
+      "status": "unresolved",
+      "outcome": "correct",
+      "alternatives": []
+    },
+    {
+      "singlish": "youtube",
+      "expected": "KEEP",
+      "output": "youtube",
+      "status": "kept_english",
+      "outcome": "correct",
+      "alternatives": []
+    },
+    {
+      "singlish": "products",
+      "expected": "KEEP",
+      "output": "products",
+      "status": "kept_english",
+      "outcome": "correct",
+      "alternatives": []
+    },
+    {
+      "singlish": "quality",
+      "expected": "KEEP",
+      "output": "quality",
+      "status": "kept_english",
+      "outcome": "correct",
+      "alternatives": []
+    },
+    {
+      "singlish": "rice",
+      "expected": "KEEP",
+      "output": "rice",
+      "status": "unresolved",
+      "outcome": "correct",
+      "alternatives": []
+    },
+    {
+      "singlish": "ingredients",
+      "expected": "KEEP",
+      "output": "ingredients",
+      "status": "unresolved",
+      "outcome": "correct",
+      "alternatives": []
+    }
+  ],
+  "retrieval": {
+    "n_queries": 82,
+    "query_normalization_status": {
+      "normalized": 53,
+      "partial": 29
+    },
+    "mean_query_coverage": 0.7737,
+    "methods": {
+      "BM25 (lexical)": {
+        "all_original_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.1098,
+          "known_positive_hit_at_10": 0.2317,
+          "known_positive_mrr_at_10": 0.1579
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.2222,
+          "known_positive_hit_at_10": 0.5,
+          "known_positive_mrr_at_10": 0.3318
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.0175,
+          "known_positive_hit_at_10": 0.0175,
+          "known_positive_mrr_at_10": 0.0175
+        },
+        "singlish_to_sinhala|norm_normalized": {
+          "n_queries": 42,
+          "known_positive_hit_at_1": 0.0,
+          "known_positive_hit_at_10": 0.0,
+          "known_positive_mrr_at_10": 0.0
+        },
+        "singlish_to_sinhala|norm_partial": {
+          "n_queries": 15,
+          "known_positive_hit_at_1": 0.0667,
+          "known_positive_hit_at_10": 0.0667,
+          "known_positive_mrr_at_10": 0.0667
+        }
+      },
+      "Normalized query -> BM25 (experimental)": {
+        "all_original_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.1463,
+          "known_positive_hit_at_10": 0.3902,
+          "known_positive_mrr_at_10": 0.222
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.0833,
+          "known_positive_hit_at_10": 0.1944,
+          "known_positive_mrr_at_10": 0.119
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.1579,
+          "known_positive_hit_at_10": 0.4386,
+          "known_positive_mrr_at_10": 0.2442
+        },
+        "singlish_to_sinhala|norm_normalized": {
+          "n_queries": 42,
+          "known_positive_hit_at_1": 0.1429,
+          "known_positive_hit_at_10": 0.4524,
+          "known_positive_mrr_at_10": 0.2373
+        },
+        "singlish_to_sinhala|norm_partial": {
+          "n_queries": 15,
+          "known_positive_hit_at_1": 0.2,
+          "known_positive_hit_at_10": 0.4,
+          "known_positive_mrr_at_10": 0.2633
+        }
+      },
+      "LaBSE (semantic)": {
+        "all_original_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.0244,
+          "known_positive_hit_at_10": 0.1098,
+          "known_positive_mrr_at_10": 0.0438
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.0556,
+          "known_positive_hit_at_10": 0.1667,
+          "known_positive_mrr_at_10": 0.0859
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.0,
+          "known_positive_hit_at_10": 0.0526,
+          "known_positive_mrr_at_10": 0.0088
+        },
+        "singlish_to_sinhala|norm_normalized": {
+          "n_queries": 42,
+          "known_positive_hit_at_1": 0.0,
+          "known_positive_hit_at_10": 0.0476,
+          "known_positive_mrr_at_10": 0.0071
+        },
+        "singlish_to_sinhala|norm_partial": {
+          "n_queries": 15,
+          "known_positive_hit_at_1": 0.0,
+          "known_positive_hit_at_10": 0.0667,
+          "known_positive_mrr_at_10": 0.0133
+        }
+      },
+      "Normalized query -> LaBSE (experimental)": {
+        "all_original_queries": {
+          "n_queries": 82,
+          "known_positive_hit_at_1": 0.1341,
+          "known_positive_hit_at_10": 0.378,
+          "known_positive_mrr_at_10": 0.2075
+        },
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.0556,
+          "known_positive_hit_at_10": 0.1944,
+          "known_positive_mrr_at_10": 0.091
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.1579,
+          "known_positive_hit_at_10": 0.4211,
+          "known_positive_mrr_at_10": 0.2411
+        },
+        "singlish_to_sinhala|norm_normalized": {
+          "n_queries": 42,
+          "known_positive_hit_at_1": 0.1667,
+          "known_positive_hit_at_10": 0.2857,
+          "known_positive_mrr_at_10": 0.2113
+        },
+        "singlish_to_sinhala|norm_partial": {
+          "n_queries": 15,
+          "known_positive_hit_at_1": 0.1333,
+          "known_positive_hit_at_10": 0.8,
+          "known_positive_mrr_at_10": 0.3245
+        }
+      }
+    },
+    "per_query_sinhala_target": [
+      {
+        "query": "podi mudalak dala loku profit ekak ganna puluwanda business ekakin?",
+        "normalized": "පොඩි මුදලක් දාලා ලොකු profit එකක් ගන්න පුලුවන්ද business එකකින්",
+        "status": "normalized",
+        "coverage": 0.8,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Anuradhapura paththe oyage products ganna thiyenawada?",
+        "normalized": "අනුරාධපුර පැත්තෙ ඔයාගෙ products ගන්න තියෙනවද",
+        "status": "normalized",
+        "coverage": 0.833,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 8.0,
+          "LaBSE (semantic)": 5.0,
+          "Normalized query -> LaBSE (experimental)": 1.0
+        }
+      },
+      {
+        "query": "Video eke adupadu (waradi) monawada kattiya kiyanne?",
+        "normalized": "Video එකේ අඩුපාඩු වැරදි මොනවද කට්ටිය කියන්නේ",
+        "status": "normalized",
+        "coverage": 0.857,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Uncle ge videos baladdi kattiya asama de mokakda?",
+        "normalized": "Uncle ගේ videos බලද්දි කට්ටිය ආසම දේ මොකක්ද",
+        "status": "normalized",
+        "coverage": 0.75,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Recipe eka gena kattiya ahana prashna monawada?",
+        "normalized": "Recipe එක ගැන කට්ටිය අහන ප්‍රශ්න මොනවද",
+        "status": "normalized",
+        "coverage": 0.857,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Kattiya mawa kawda kiyala hithalada channel ekata enne?",
+        "normalized": "කට්ටිය මාව kawda කියලා හිතලද channel එකට එන්නෙ",
+        "status": "normalized",
+        "coverage": 0.75,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Kattiya bittara thambana eka gena (boiling eggs) monawada kiyanne waradi kiyala?",
+        "normalized": "කට්ටිය බිත්තර thambana එක ගැන boiling eggs මොනවද කියන්නේ වැරදි කියලා",
+        "status": "partial",
+        "coverage": 0.727,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 5.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 7.0
+        }
+      },
+      {
+        "query": "Recipe eke ingredients (kema hadana pramanaya) gena minissu complain karanawada?",
+        "normalized": "Recipe එකේ ingredients කැම හදන ප්‍රමාණය ගැන මිනිස්සු complain කරනවද",
+        "status": "partial",
+        "coverage": 0.7,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Bath ekata udin daapu kaha pata saha rathu pata (food coloring) gena ahanawada?",
+        "normalized": "බත් එකට උඩින් දාපු කහ පාට සහ රතු පාට food coloring ගැන ahanawada",
+        "status": "normalized",
+        "coverage": 0.769,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 3.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 2.0
+        }
+      },
+      {
+        "query": "Podi lamayinta kama bedala dena eka (charity/feeding) gena kattiya hoda kiyanawada?",
+        "normalized": "පොඩි ලමයින්ට කැම බැදලා දෙන එක charity feeding ගැන කට්ටිය හොද කියනවද",
+        "status": "normalized",
+        "coverage": 0.833,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 2.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Gema mokakda kiyala kattiya ahanawada?",
+        "normalized": "ගැම මොකක්ද කියලා කට්ටිය ahanawada",
+        "status": "normalized",
+        "coverage": 0.8,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Biththara thambaddi pupurana ekata kattiya monawada advice deela thiyenne?",
+        "normalized": "බිත්තර thambaddi පුපුරන එකට කට්ටිය මොනවද advice දීලා තියෙන්නේ",
+        "status": "normalized",
+        "coverage": 0.778,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Kattiya bath ekata dapu rathu pata colour eka ganayi, mas pramanaya ganayi ahanawada?",
+        "normalized": "කට්ටිය බත් එකට දාපු රතු පාට colour එක ගැනයි මාස ප්‍රමාණය ගැනයි ahanawada",
+        "status": "normalized",
+        "coverage": 0.846,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 1.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 4.0
+        }
+      },
+      {
+        "query": "Kattiya thama mama wa Maithripala Sirisenata samana karanawada?",
+        "normalized": "කට්ටිය තමා මම ව මෛත්‍රීපාල Sirisenata සමාන කරනවද",
+        "status": "normalized",
+        "coverage": 0.875,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 2.0,
+          "LaBSE (semantic)": 10.0,
+          "Normalized query -> LaBSE (experimental)": 1.0
+        }
+      },
+      {
+        "query": "Kattiya channel eka tikak kal inactive wela thibba nisa upset eken da inne?",
+        "normalized": "කට්ටිය channel එක ටිකක් කල inactive වෙලා තිබ්බා නිසා upset එකෙන් ද ඉන්නේ",
+        "status": "normalized",
+        "coverage": 0.769,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Bath eka hadaddi wathura damme nathi eka ganayi, pawiichchi karapu hal wargaya ganayi ahanawada?",
+        "normalized": "බත් එක හදද්දි වතුර දැම්මේ නැති එක ගැනයි pawiichchi කරපු හාල් වර්ගයා ගැනයි ahanawada",
+        "status": "normalized",
+        "coverage": 0.857,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 1.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 1.0
+        }
+      },
+      {
+        "query": "Nalu niliyo party walata salli wiyadam karana ekata wada me wage minissunta kana dena eka hodai kiyala kattiya kiyanawada?",
+        "normalized": "නළු නිලියො party වලට සල්ලි වියදම් කරන එකට වඩා මේ වගේ මිනිස්සුන්ට කන දෙන එක හොදයි කියලා කට්ටිය කියනවද",
+        "status": "normalized",
+        "coverage": 0.947,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 6.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 1.0
+        }
+      },
+      {
+        "query": "Uyaddi pawichchi karana hal saha pahe jathi wala exact measurements kattiya ahanawada?",
+        "normalized": "Uyaddi පාවිච්චි කරන හාල් සහ පහේ ජාති වල exact measurements කට්ටිය ahanawada",
+        "status": "partial",
+        "coverage": 0.667,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 1.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 3.0
+        }
+      },
+      {
+        "query": "Malu kapala hodana eka gana minissu monawada upades (advice) denne?",
+        "normalized": "මාලු කපල හෝදන එක ගැන මිනිස්සු මොනවද උපදෙස් advice දෙන්නෙ",
+        "status": "normalized",
+        "coverage": 0.9,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 4.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Maduwa/Stingray kanawata kamathi nathi (dislike karana) minissu monawada kiyanne?",
+        "normalized": "මඩුවා Stingray කනවට කැමති නැති dislike කරන මිනිස්සු මොනවද කියන්නේ",
+        "status": "normalized",
+        "coverage": 0.8,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Mas maranawata/saththu maranawata akamathi kattiya karma (paw/pin) gana monawada kiyanawada?",
+        "normalized": "මාස maranawata සත්තු maranawata අකමැති කට්ටිය කර්ම පව් පින් ගැන මොනවද කියනවද",
+        "status": "normalized",
+        "coverage": 0.833,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 8.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Ape channel eke gama (village) koheda thiyenne kiyala minissu ahanawada?",
+        "normalized": "අපේ channel එකේ ගම village කොහෙද තියෙන්නේ කියලා මිනිස්සු ahanawada",
+        "status": "partial",
+        "coverage": 0.7,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 8.0
+        }
+      },
+      {
+        "query": "Youtube eke salli hamba karanna karana boruwak hari, cookery channels walata banina comments thiyenawada?",
+        "normalized": "Youtube එකේ සල්ලි හම්බ කරන්න කරන බොරුවක් හරි cookery channels වලට banina comments තියෙනවද",
+        "status": "partial",
+        "coverage": 0.643,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 10.0
+        }
+      },
+      {
+        "query": "Wena ratawala ayata balanna English walin ingredients danna kiyala request thiyenawada?",
+        "normalized": "වෙන රටවල අයට බලන්න English වලින් ingredients දාන්න කියලා request තියෙනවද",
+        "status": "partial",
+        "coverage": 0.727,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 1.0
+        }
+      },
+      {
+        "query": "Maduwage katuwa wisai kiyala hari eken maruna minissu gana hari comments thiyenawada?",
+        "normalized": "Maduwage කටුව විසයි කියලා හරි එකෙන් maruna මිනිස්සු ගැන හරි comments තියෙනවද",
+        "status": "normalized",
+        "coverage": 0.75,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Saththu marana ekata hari marapu satha pennana ekata hari minissu kamathi nadda?",
+        "normalized": "සත්තු මරණ එකට හරි marapu සතා පෙන්නන එකට හරි මිනිස්සු කැමති නැද්ද",
+        "status": "normalized",
+        "coverage": 0.917,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Me game ekamuthukama anith pathi wala hari thamange game hari na kiyala kattiya kiyanawada?",
+        "normalized": "මේ ගමේ එකමුතුකම අනිත් පටි වල හරි තමන්ගේ ගමේ හරි නැ කියලා කට්ටිය කියනවද",
+        "status": "normalized",
+        "coverage": 1.0,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Me gama koheda kiyala hari game nama hari kattiya comment karala thiyenawada?",
+        "normalized": "මේ ගම කොහෙද කියලා හරි ගමේ නම හරි කට්ටිය comment කරලා තියෙනවද",
+        "status": "normalized",
+        "coverage": 0.917,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Mama wa wena prassidha kenekta samana karala comments thiyenawada?",
+        "normalized": "මම ව වෙන prassidha කෙනෙක්ට සමාන කරලා comments තියෙනවද",
+        "status": "normalized",
+        "coverage": 0.778,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Salli deela hari wiyadam karala hari gamata kama denna sponsor karanna kamathi aya innewada?",
+        "normalized": "සල්ලි දීලා හරි වියදම් කරලා හරි ගමට කැම දෙන්න sponsor කරන්න කැමති අය innewada",
+        "status": "normalized",
+        "coverage": 0.857,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Kama hadanna badu ganna salli denne kauda hari, lama niwasa (orphanages) walata denna kiyala hari ahanawada?",
+        "normalized": "කැම හදන්න බඩු ගන්න සල්ලි දෙන්නෙ කවුද හරි ලමා නිවාස orphanages වලට දෙන්න කියලා හරි ahanawada",
+        "status": "normalized",
+        "coverage": 0.875,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 5.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Maduwa loku wadi kiyala hari, me maluwa kanawa kiyala danne na hari, rasa ahanawada?",
+        "normalized": "මඩුවා ලොකු වැඩි කියලා හරි මේ මාලුවා කනවා කියලා දන්නේ නැ හරි රස ahanawada",
+        "status": "normalized",
+        "coverage": 0.929,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Ape gama koheda hari allapu game kattiya ahanawada?",
+        "normalized": "අපේ ගම කොහෙද හරි අල්ලපු ගමේ කට්ටිය ahanawada",
+        "status": "normalized",
+        "coverage": 0.875,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Duwa gana hari duwawa set karanna kiyala hari inappropriate comments thiyenawada?",
+        "normalized": "දුව ගැන හරි duwawa සෙට් කරන්න කියලා හරි inappropriate comments තියෙනවද",
+        "status": "partial",
+        "coverage": 0.727,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 3.0
+        }
+      },
+      {
+        "query": "Me bath eka rice cooker eke hadanna puluwanda kiyala kattiya ahanawada?",
+        "normalized": "මේ බත් එක rice cooker එකේ හදන්න පුලුවන්ද කියලා කට්ටිය ahanawada",
+        "status": "partial",
+        "coverage": 0.727,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 3.0
+        }
+      },
+      {
+        "query": "Kaha bath ekata rata kaju, kurudu pothu, gammiris wage dewal danna puluwanda kiyala ahanawada?",
+        "normalized": "කහ බත් එකට රට කජු කුරුදු පොතු ගම්මිරිස් වගේ දේවල් දාන්න පුලුවන්ද කියලා ahanawada",
+        "status": "normalized",
+        "coverage": 0.929,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 2.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 2.0
+        }
+      },
+      {
+        "query": "Creator ta \"gothaya\" kiyala banala hari, kama eka \"gu rahai\" kiyala hari narakata comments thiyenawada?",
+        "normalized": "Creator ට ගෝතය කියලා බැනල හරි කැම එක ගූ රහයි කියලා හරි narakata comments තියෙනවද",
+        "status": "normalized",
+        "coverage": 0.8,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 1.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Kaha bath eka rice cooker eke hadanna puluwanda kiyala kattiya ahanawada?",
+        "normalized": "කහ බත් එක rice cooker එකේ හදන්න පුලුවන්ද කියලා කට්ටිය ahanawada",
+        "status": "partial",
+        "coverage": 0.727,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Hal kilo dekakata (2kg) wage loku pramanayakata hadanna ona measurements minissu illanawada?",
+        "normalized": "හාල් කිලො දෙකකට 2kg වගේ ලොකු pramanayakata හදන්න ඕන measurements මිනිස්සු illanawada",
+        "status": "partial",
+        "coverage": 0.727,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 1.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 3.0
+        }
+      },
+      {
+        "query": "Keeri samba hal aalenawa neda kiyala hari, Basmati walin meka hadanna puluwanda kiyala hari ahanawada?",
+        "normalized": "කීරි සම්බා හාල් aalenawa නේද කියලා හරි බාස්මති වලින් මේක හදන්න පුලුවන්ද කියලා හරි ahanawada",
+        "status": "normalized",
+        "coverage": 0.867,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 3.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 8.0
+        }
+      },
+      {
+        "query": "Sudu lunu (garlic) saha inguru (ginger) me recipe ekata damme naththe aiy kiyala ahanawada?",
+        "normalized": "සුදු ලුණු garlic සහ ඉඟුරු ginger මේ recipe එකට දැම්මේ නැත්තේ අයිය කියලා ahanawada",
+        "status": "partial",
+        "coverage": 0.714,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 3.0
+        }
+      },
+      {
+        "query": "Video eke wal wataram kiyawanne nathuwa kelinma recipe eka kiyala dena ekata kattiya kamathida?",
+        "normalized": "Video එකේ වල wataram කියවන්නෙ නැතුව කෙලින්ම recipe එක කියලා දෙන එකට කට්ටිය කැමතිද",
+        "status": "normalized",
+        "coverage": 0.786,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Bath kilo 20k wage loku pramanayakata hadaddi ona amudrawya minissu illanawada?",
+        "normalized": "බත් කිලො 20k වගේ ලොකු pramanayakata හදද්දි ඕන අමුද්‍රව්‍ය මිනිස්සු illanawada",
+        "status": "normalized",
+        "coverage": 0.8,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 1.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 1.0
+        }
+      },
+      {
+        "query": "Rice cooker eke meka hadanna puluwanda kiyala kattiya ahanawada?",
+        "normalized": "Rice cooker එකේ මේක හදන්න පුලුවන්ද කියලා කට්ටිය ahanawada",
+        "status": "partial",
+        "coverage": 0.667,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 4.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 3.0
+        }
+      },
+      {
+        "query": "Kanna hora podi babalata meka dunnama asawen kanawada kiyala ammala comment karala thiyenawada?",
+        "normalized": "කන්න හොර පොඩි babalata මේක දුන්නම ආසාවෙන් කනවද කියලා අම්මලා comment කරලා තියෙනවද",
+        "status": "normalized",
+        "coverage": 0.846,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Bath eka wathura wadi wela kenda wage (mushy) wela kiyala kattiya baninawada?",
+        "normalized": "බත් එක වතුර වැඩි වෙලා kenda වගේ mushy වෙලා කියලා කට්ටිය baninawada",
+        "status": "normalized",
+        "coverage": 0.75,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Kaha bath ekata wiyali midi (raisins), kaju, hari kurudu danna kiyala kattiya upades denawada?",
+        "normalized": "කහ බත් එකට wiyali මිදී raisins කජු හරි කුරුදු දාන්න කියලා කට්ටිය උපදෙස් දෙනවද",
+        "status": "normalized",
+        "coverage": 0.857,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 10.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Thel ekata danne amu hal da natham kalin uyapu bath da kiyala ahanawada?",
+        "normalized": "තෙල් එකට දන්නේ අමු හාල් ද නැතම් කලින් උයපු බත් ද කියලා ahanawada",
+        "status": "normalized",
+        "coverage": 0.923,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 1.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 1.0
+        }
+      },
+      {
+        "query": "Kaha bath ekata kanna galapena curries (wyanjana) monawada kiyala ahanawada?",
+        "normalized": "කහ බත් එකට කන්න ගැලපෙන curries wyanjana මොනවද කියලා ahanawada",
+        "status": "partial",
+        "coverage": 0.7,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 2.0,
+          "LaBSE (semantic)": 5.0,
+          "Normalized query -> LaBSE (experimental)": 2.0
+        }
+      },
+      {
+        "query": "Kulubadu (spices) hapenawata akamathi ayata karanna puluwan trick eka (redi kallaka gata gahana eka) gana kiyala thiyenawada?",
+        "normalized": "කුළුබඩු spices hapenawata අකමැති අයට කරන්න පුලුවන් trick එක රෙදි kallaka ගත ගහන එක ගැන කියලා තියෙනවද",
+        "status": "normalized",
+        "coverage": 0.765,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Kaha bath ekata kurudu pothu (cinnamon) danna kiyala minissu upades denawada?",
+        "normalized": "කහ බත් එකට කුරුදු පොතු cinnamon දාන්න කියලා මිනිස්සු උපදෙස් දෙනවද",
+        "status": "normalized",
+        "coverage": 0.909,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 2.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 2.0
+        }
+      },
+      {
+        "query": "Thel wenuwata Ghee (batar/elakiri thel) danna kiyala kattiya kiyanawada?",
+        "normalized": "තෙල් වෙනුවට ගේ බටර් එලකිරි තෙල් දාන්න කියලා කට්ටිය කියනවද",
+        "status": "normalized",
+        "coverage": 1.0,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Samba hal dan rasa na kiyalath, basmathi hodai kiyalath, kaha kudu wadi wela kiyalath comments thiyenawada?",
+        "normalized": "සම්බා හාල් දැන් රස නැ කියලත් බාස්මති හොදයි කියලත් කහ කුඩු වැඩි වෙලා කියලත් comments තියෙනවද",
+        "status": "normalized",
+        "coverage": 0.938,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 3.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 1.0
+        }
+      },
+      {
+        "query": "Video eke ads wadi kiyala hari ad kiyakda kiyala hari ahanawada?",
+        "normalized": "Video එකේ ads වැඩි කියලා හරි අද කීයක්ද කියලා හරි ahanawada",
+        "status": "partial",
+        "coverage": 0.727,
+        "rank_at_10": {
+          "BM25 (lexical)": 1.0,
+          "Normalized query -> BM25 (experimental)": 1.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": 1.0
+        }
+      },
+      {
+        "query": "Oyage videos balala mama channel ekak patan ganna motivate una kiyala comments thiyenawada?",
+        "normalized": "ඔයාගෙ videos බලලා මම channel එකක් පටන් ගන්න motivate උනා කියලා comments තියෙනවද",
+        "status": "partial",
+        "coverage": 0.692,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Kana bath tikata kelawapu eka gana banala comments thiyenawada?",
+        "normalized": "කන බත් ටිකට කෙලවපු එක ගැන බැනල comments තියෙනවද",
+        "status": "normalized",
+        "coverage": 0.889,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": 1.0,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      },
+      {
+        "query": "Rathna sahal (Rathna Rice) business eka gana hari, eke hal wala quality eka gana hari kattiya monawada kiyanne?",
+        "normalized": "රත්න සහල් රත්න Rice business එක ගැන හරි එකේ හාල් වල quality එක ගැන හරි කට්ටිය මොනවද කියන්නේ",
+        "status": "normalized",
+        "coverage": 0.833,
+        "rank_at_10": {
+          "BM25 (lexical)": null,
+          "Normalized query -> BM25 (experimental)": null,
+          "LaBSE (semantic)": null,
+          "Normalized query -> LaBSE (experimental)": null
+        }
+      }
+    ],
+    "leakage_ablation": {
+      "Normalized (lexicon excl. known positives) -> BM25 (lexical)": {
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.0833,
+          "known_positive_hit_at_10": 0.2222,
+          "known_positive_mrr_at_10": 0.1218
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.1579,
+          "known_positive_hit_at_10": 0.3684,
+          "known_positive_mrr_at_10": 0.2234
+        }
+      },
+      "Normalized (lexicon excl. known positives) -> LaBSE (semantic)": {
+        "singlish_to_latin": {
+          "n_queries": 36,
+          "known_positive_hit_at_1": 0.0556,
+          "known_positive_hit_at_10": 0.1667,
+          "known_positive_mrr_at_10": 0.0882
+        },
+        "singlish_to_sinhala": {
+          "n_queries": 57,
+          "known_positive_hit_at_1": 0.1228,
+          "known_positive_hit_at_10": 0.4561,
+          "known_positive_mrr_at_10": 0.2098
+        }
+      }
+    }
+  }
+}
