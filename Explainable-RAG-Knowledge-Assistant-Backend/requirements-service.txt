@@ -1,5 +1,0 @@
-# FastAPI retrieval service (adds to the research prototype requirements).
--r requirements.txt
-fastapi>=0.115,<1
-uvicorn[standard]>=0.30,<1
-httpx>=0.27,<1   # FastAPI TestClient (tests)

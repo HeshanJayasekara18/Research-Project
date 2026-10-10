@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag-service"
+version = "0.1.0"
+description = "C3 Explainable RAG Knowledge Assistant & Singlish Retrieval Engine (FastAPI service)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "scikit-learn>=1.3",
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.30,<1",
+]
+
+[project.optional-dependencies]
+# LaBSE semantic retrieval (large model download on first use)
+semantic = ["sentence-transformers>=3,<6"]
+# Gradio research prototype (prototype/gradio_app.py)
+prototype = ["gradio>=5,<7"]
+# Test tooling (FastAPI TestClient)
+dev = ["httpx>=0.27,<1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

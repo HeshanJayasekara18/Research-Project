@@ -11,7 +11,7 @@ venv/
 *.key
 secrets*.json
 
-# Large derived artifacts (rebuild with: python build_labse_index.py)
+# Large derived artifacts (rebuild with: python scripts/build_labse_index.py)
 data/labse_index.npz
 *.tmp.npz
 
@@ -30,3 +30,8 @@ flagged/
 .coverage
 htmlcov/
 tests/_tmp_index.npz
+
+# Packaging
+*.egg-info/
+build/
+dist/
