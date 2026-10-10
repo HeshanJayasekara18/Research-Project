@@ -2,10 +2,9 @@ import sys
 import unittest
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-from normalization import LexiconRuleNormalizer, Normalizer, split_units
-from retrieval import NORM_BM25_METHOD, RetrievalEngine
+ROOT = Path(__file__).resolve().parents[2]
+from rag_service.retrieval.normalization import LexiconRuleNormalizer, Normalizer, split_units
+from rag_service.retrieval.engine import NORM_BM25_METHOD, RetrievalEngine
 
 # Tiny synthetic lexicon: Sinhala-script "comments" (ad is an English loanword inside them).
 TOY = ['කහ බත් කන්න', 'කහ බත් හොඳයි', 'මොනවද කියලා', 'Ad කීයක්ද', 'Ad එක දිගයි', 'මස මස', 'මාස මාස']
@@ -70,7 +69,7 @@ class TestNormalizedRetrieval(unittest.TestCase):
         self.assertTrue(any('කහ' in d['comment_text'] for d, _ in rows))
 
     def test_app_imports_and_renders_normalization_note(self):
-        import app  # builds the Gradio Blocks without launching a server
+        from prototype import gradio_app as app  # builds the Gradio Blocks without launching a server
         table, note = app.run_search('Kaha bath ekata kanna monawada?', NORM_BM25_METHOD, 5)
         self.assertTrue(table)
         self.assertIn('Normalised query', note)

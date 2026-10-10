@@ -2,9 +2,8 @@ import sys
 import unittest
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-from retrieval import (DENSE_METHODS, MULTIVIEW_METHODS, MV_BM25_METHOD, NORM_BM25_METHOD,
+ROOT = Path(__file__).resolve().parents[2]
+from rag_service.retrieval.engine import (DENSE_METHODS, MULTIVIEW_METHODS, MV_BM25_METHOD, NORM_BM25_METHOD,
                        SEMANTIC_METHOD, RetrievalEngine)
 
 DEMO_VIDEO = '-3a4abtQH3E'
@@ -67,7 +66,7 @@ class TestVideoScope(unittest.TestCase):
         self.assertLessEqual(len(self.engine.search('video', 'BM25 (lexical)', n + 100, DEMO_VIDEO)), n)
 
     def test_all_scripts_kept_in_scope(self):
-        from evaluate_crossscript import script_of
+        from research.evaluation.evaluate_crossscript import script_of
         scripts = {script_of(self.engine.texts[i]) for i in self.engine.video_rows[DEMO_VIDEO]}
         self.assertEqual(scripts, {'latin', 'sinhala'})
 
@@ -89,7 +88,7 @@ class TestVideoScope(unittest.TestCase):
 
 class TestVideoScopeUI(unittest.TestCase):
     def test_app_scoped_search_and_messages(self):
-        import app
+        from prototype import gradio_app as app
         table, note = app.run_search(DEMO_QUERY, 'BM25 (lexical)', 10, DEMO_VIDEO)
         self.assertTrue(table)
         self.assertTrue(all(row[3] == DEMO_VIDEO for row in table))
@@ -106,7 +105,7 @@ class TestVideoScopeUI(unittest.TestCase):
         self.assertEqual(app.scope_choices()[0][1], '')  # global mode still available
 
     def test_no_result_wording_and_candidate_labels(self):
-        import app
+        from prototype import gradio_app as app
         _, note = app.run_search('qwxzplugh', 'BM25 (lexical)', 10, DEMO_VIDEO)
         self.assertIn('using BM25 (lexical)', note)
         self.assertIn('does **not** mean that no relevant comments exist', note)
@@ -123,7 +122,7 @@ class TestVideoScopeUI(unittest.TestCase):
 class TestComparisonScope(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        import app
+        from prototype import gradio_app as app
         cls.app = app
         ready, _ = app.engine().semantic_status()
         cls.methods = app.ALL_METHODS if ready else [m for m in app.ALL_METHODS if m not in DENSE_METHODS

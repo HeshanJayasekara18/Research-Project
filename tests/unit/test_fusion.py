@@ -2,10 +2,9 @@ import sys
 import unittest
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-from fusion import rrf
-from retrieval import MV_BM25_METHOD, RetrievalEngine
+ROOT = Path(__file__).resolve().parents[2]
+from rag_service.retrieval.fusion import rrf
+from rag_service.retrieval.engine import MV_BM25_METHOD, RetrievalEngine
 
 
 class TestRRF(unittest.TestCase):
@@ -63,7 +62,7 @@ class TestMultiViewEngine(unittest.TestCase):
         self.assertEqual(self.engine.search('   ', MV_BM25_METHOD, 10), [])
 
     def test_app_multiview_and_comparison(self):
-        import app
+        from prototype import gradio_app as app
         table, note = app.run_search('Kaha bath ekata kanna monawada?', MV_BM25_METHOD, 5)
         self.assertTrue(table)
         self.assertIn('BM25/normalized', note)

@@ -4,13 +4,12 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
+ROOT = Path(__file__).resolve().parents[2]
 from fastapi.testclient import TestClient
 
-from retrieval import MV_BM25_METHOD, RetrievalEngine
-from service.config import Settings
-from service.main import create_app
+from rag_service.retrieval.engine import MV_BM25_METHOD, RetrievalEngine
+from rag_service.core.config import Settings
+from rag_service.api.main import create_app
 
 DEMO_VIDEO = '-3a4abtQH3E'
 DEMO_QUERY = 'Me wetakolu video eke poththa saha dara ain karana eka gana viewers la monawada kiyanne?'
@@ -161,14 +160,13 @@ class TestAuth(ApiTestBase):
 
 class TestContract(unittest.TestCase):
     def test_committed_openapi_is_current(self):
-        sys.path.insert(0, str(ROOT / 'scripts'))
-        from export_openapi import OUT, render
+        from scripts.export_openapi import OUT, render
         self.assertTrue(OUT.exists(), 'run: python scripts/export_openapi.py')
         self.assertEqual(OUT.read_text(encoding='utf-8'), render(),
                          'API contract changed: review it, then run python scripts/export_openapi.py')
 
     def test_paths(self):
-        from service.config import Settings
+        from rag_service.core.config import Settings
         paths = create_app(Settings(), engine=object()).openapi()['paths']
         self.assertEqual(set(paths), {'/v1/health', '/v1/retrieve'})
 

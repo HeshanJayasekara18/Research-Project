@@ -3,9 +3,8 @@ import json
 import sys
 import unittest
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT))
-from retrieval import RetrievalEngine,tokenize
+ROOT = Path(__file__).resolve().parents[2]
+from rag_service.retrieval.engine import RESULTS, RetrievalEngine,tokenize
 
 class TestPP1(unittest.TestCase):
     @classmethod
@@ -13,7 +12,7 @@ class TestPP1(unittest.TestCase):
         cls.engine=RetrievalEngine()
 
     def test_corpus_size(self):
-        self.assertEqual(len(self.engine.docs), json.loads((ROOT / "results" / "dataset_profile.json").read_text())["clean_corpus_rows"])
+        self.assertEqual(len(self.engine.docs), json.loads((RESULTS / "dataset_profile.json").read_text())["clean_corpus_rows"])
 
     def test_privacy_removed(self):
         self.assertNotIn('author',self.engine.docs[0])
@@ -37,7 +36,7 @@ class TestPP1(unittest.TestCase):
         self.assertEqual(self.engine.search('  '),[])
 
     def test_provenance(self):
-        profile=json.loads((ROOT/'results'/'dataset_profile.json').read_text())
+        profile=json.loads((RESULTS/'dataset_profile.json').read_text())
         self.assertEqual(profile['seed_pairs'],366)
         self.assertEqual(profile['verified_relevance_labels'],0)
 

@@ -5,11 +5,10 @@ from unittest import mock
 
 import numpy as np
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-import retrieval
-from retrieval import LABSE_INDEX, SEMANTIC_METHOD, RetrievalEngine
-from evaluate_crossscript import rank_metrics, script_of, spelling_variants
+ROOT = Path(__file__).resolve().parents[2]
+from rag_service.retrieval import engine as retrieval
+from rag_service.retrieval.engine import LABSE_INDEX, SEMANTIC_METHOD, RetrievalEngine
+from research.evaluation.evaluate_crossscript import rank_metrics, script_of, spelling_variants
 
 
 class TestSemanticFailureModes(unittest.TestCase):
