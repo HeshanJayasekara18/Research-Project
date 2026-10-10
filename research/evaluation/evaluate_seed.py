@@ -7,7 +7,7 @@ import csv
 import json
 from collections import defaultdict
 from pathlib import Path
-from retrieval import RetrievalEngine, DATA, ROOT, SEMANTIC_METHOD
+from rag_service.retrieval.engine import RetrievalEngine, DATA, RESULTS, SEMANTIC_METHOD
 
 METHODS = ('BM25 (lexical)', 'Character TF-IDF')
 
@@ -53,8 +53,8 @@ def diagnostic(engine=None, methods=None):
             metrics['sample_bm25_hits'] = [x['query'] for x in ranked_examples if x['hit_at_10']][:8]
             metrics['sample_bm25_misses'] = [x['query'] for x in ranked_examples if not x['hit_at_10']][:8]
 
-    (ROOT/'results').mkdir(exist_ok=True)
-    (ROOT/'results'/'seed_diagnostic.json').write_text(json.dumps(metrics,ensure_ascii=False,indent=2),encoding='utf-8')
+    RESULTS.mkdir(parents=True, exist_ok=True)
+    (RESULTS/'seed_diagnostic.json').write_text(json.dumps(metrics,ensure_ascii=False,indent=2),encoding='utf-8')
     return metrics
 
 if __name__=='__main__':

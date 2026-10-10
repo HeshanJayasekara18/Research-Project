@@ -8,13 +8,12 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
 OUT = ROOT / 'docs' / 'openapi.json'
 
 
 def render() -> str:
-    from service.config import Settings
-    from service.main import create_app
+    from rag_service.api.main import create_app
+    from rag_service.core.config import Settings
     return json.dumps(create_app(Settings()).openapi(), indent=2, ensure_ascii=False, sort_keys=True) + '\n'
 
 

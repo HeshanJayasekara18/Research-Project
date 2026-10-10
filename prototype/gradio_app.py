@@ -4,10 +4,10 @@ import json
 from pathlib import Path
 from functools import lru_cache
 import gradio as gr
-from retrieval import (ROOT, DATA, RetrievalEngine, NORMALIZED_METHODS, NORM_BM25_METHOD, NORM_LABSE_METHOD,
+from rag_service.retrieval.engine import (RESULTS, DATA, RetrievalEngine, NORMALIZED_METHODS, NORM_BM25_METHOD, NORM_LABSE_METHOD,
                        MULTIVIEW_METHODS, MV_BM25_METHOD, MV_LABSE_METHOD, MV_HYBRID_METHOD, SEMANTIC_METHOD)
-from evaluate_crossscript import script_of
-from retrieval import tokenize
+from research.evaluation.evaluate_crossscript import script_of
+from rag_service.retrieval.engine import tokenize
 
 ALL_METHODS=['BM25 (lexical)','Character TF-IDF',SEMANTIC_METHOD,NORM_BM25_METHOD,NORM_LABSE_METHOD,
              MV_BM25_METHOD,MV_LABSE_METHOD,MV_HYBRID_METHOD]
@@ -20,7 +20,7 @@ def engine():
 
 
 def profile():
-    return json.loads((ROOT/'results'/'dataset_profile.json').read_text(encoding='utf-8'))
+    return json.loads((RESULTS/'dataset_profile.json').read_text(encoding='utf-8'))
 
 
 def pairs_preview():
@@ -187,9 +187,9 @@ def normalization_note(query):
 
 
 def show_diagnostic():
-    path=ROOT/'results'/'seed_diagnostic.json'
+    path=RESULTS/'seed_diagnostic.json'
     if not path.exists():
-        return 'Run `python evaluate_seed.py` to generate exploratory results.'
+        return 'Run `python -m research.evaluation.evaluate_seed` to generate exploratory results.'
     d=json.loads(path.read_text(encoding='utf-8'))
     lines=[f"**Eligible unique queries:** {d.get('eligible_unique_queries',0)}",
            '**This is a seed-pair diagnostic, NOT independent nDCG or Recall.**',
@@ -261,9 +261,9 @@ with gr.Blocks(title='Singlish Retrieval Engine · PP1') as demo:
                      datatype=['str','str','str'],interactive=False,wrap=True,label='First 75 query–comment examples')
     with gr.Tab('📊 Preliminary Baseline Diagnostic'):
         gr.Markdown(show_diagnostic())
-        _mv=ROOT/'results'/'multiview_eval.md'
+        _mv=RESULTS/'multiview_eval.md'
         gr.Markdown(_mv.read_text(encoding='utf-8').replace('# Milestone 3','### Milestone 3',1) if _mv.exists()
-                    else 'Run `python evaluate_multiview.py` to generate the multi-view comparison.')
+                    else 'Run `python -m research.evaluation.evaluate_multiview` to generate the multi-view comparison.')
         gr.Markdown('**Research hypothesis:** Cross-script queries can have low term overlap with Sinhala evidence. Exploratory seed diagnostics suggest normalisation helps Sinhala-script targets and multi-view fusion balances both scripts; this must be confirmed on a separately human-annotated benchmark before any claim is made.')
         gr.Markdown('**PP1 evaluation milestone:** independent relevance judgments, verified sources, query-family-disjoint data splits, and nDCG@10 / Recall@50 on the same held-out test set.')
     with gr.Tab('🧭 Planned Research Pipeline'):

@@ -13,7 +13,7 @@ import time
 
 import numpy as np
 
-from retrieval import LABSE_INDEX, LABSE_MODEL, load_corpus, load_labse_model
+from rag_service.retrieval.engine import LABSE_INDEX, LABSE_MODEL, load_corpus, load_labse_model
 
 
 def index_is_current(ids, model_name):

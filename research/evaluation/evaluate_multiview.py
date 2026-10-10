@@ -16,9 +16,9 @@ import csv
 import json
 from collections import defaultdict
 
-from evaluate_crossscript import load_linked, rank_metrics, script_of, summarise
-from retrieval import (DATA, MV_BM25_METHOD, MV_HYBRID_METHOD, MV_LABSE_METHOD, NORM_BM25_METHOD,
-                       NORM_LABSE_METHOD, ROOT, SEMANTIC_METHOD, RetrievalEngine)
+from research.evaluation.evaluate_crossscript import load_linked, rank_metrics, script_of, summarise
+from rag_service.retrieval.engine import (DATA, MV_BM25_METHOD, MV_HYBRID_METHOD, MV_LABSE_METHOD, NORM_BM25_METHOD,
+                       NORM_LABSE_METHOD, RESULTS, SEMANTIC_METHOD, RetrievalEngine)
 
 LEXICAL = ['BM25 (lexical)', NORM_BM25_METHOD, MV_BM25_METHOD]
 DENSE = [SEMANTIC_METHOD, NORM_LABSE_METHOD, MV_LABSE_METHOD, MV_HYBRID_METHOD]
@@ -104,9 +104,9 @@ def main():
                        'audit_correct': evaluate(engine, methods, audited, text, doc_text)},
            'k_sensitivity': {k: evaluate(engine, [MV_BM25_METHOD], positives, text, doc_text, k_override=k)[MV_BM25_METHOD]
                              for k in (10, 60, 100)}}
-    (ROOT / 'results' / 'multiview_eval.json').write_text(json.dumps(rep, ensure_ascii=False, indent=2), encoding='utf-8')
+    (RESULTS / 'multiview_eval.json').write_text(json.dumps(rep, ensure_ascii=False, indent=2), encoding='utf-8')
     md = to_markdown(rep)
-    (ROOT / 'results' / 'multiview_eval.md').write_text(md, encoding='utf-8')
+    (RESULTS / 'multiview_eval.md').write_text(md, encoding='utf-8')
     print(md)
 
 

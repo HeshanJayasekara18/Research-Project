@@ -20,7 +20,7 @@ import json
 import re
 from collections import defaultdict
 
-from retrieval import DATA, ROOT, SEMANTIC_METHOD, RetrievalEngine
+from rag_service.retrieval.engine import DATA, RESULTS, SEMANTIC_METHOD, RetrievalEngine
 
 BASE_METHODS = ('BM25 (lexical)', 'Character TF-IDF')
 SINHALA_RE = re.compile(r'[඀-෿]')
@@ -121,8 +121,8 @@ def diagnostic(engine=None, methods=None):
                                       'score': score, 'comment': d['comment_text'][:160]}
         report['examples'].append(ex)
 
-    (ROOT / 'results').mkdir(exist_ok=True)
-    (ROOT / 'results' / 'crossscript_diagnostic.json').write_text(
+    RESULTS.mkdir(parents=True, exist_ok=True)
+    (RESULTS / 'crossscript_diagnostic.json').write_text(
         json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
     return report
 

@@ -13,8 +13,8 @@ import csv
 import json
 from collections import Counter, defaultdict
 
-from evaluate_crossscript import load_linked, rank_metrics, summarise
-from retrieval import (DATA, NORM_BM25_METHOD, NORM_LABSE_METHOD, ROOT, SEMANTIC_METHOD,
+from research.evaluation.evaluate_crossscript import load_linked, rank_metrics, summarise
+from rag_service.retrieval.engine import (DATA, NORM_BM25_METHOD, NORM_LABSE_METHOD, RESULTS, SEMANTIC_METHOD,
                        RetrievalEngine)
 
 PAIRS = [('BM25 (lexical)', NORM_BM25_METHOD), (SEMANTIC_METHOD, NORM_LABSE_METHOD)]
@@ -74,7 +74,7 @@ def retrieval_comparison(engine):
 
     # Leakage ablation: lexicon built WITHOUT any known-positive comment, so a word
     # that occurs only in the target comment cannot be produced by normalisation.
-    from normalization import from_corpus
+    from rag_service.retrieval.normalization import from_corpus
     all_pos = set().union(*positives.values())
     held_out = from_corpus([d for d in engine.docs if d['document_id'] not in all_pos])
     ablation = {}
@@ -131,9 +131,9 @@ def main():
                       'significance testing; n is small.',
            'normalizer': engine.normalizer.name, 'word_quality': summary, 'word_rows': rows,
            'retrieval': retrieval_comparison(engine)}
-    (ROOT / 'results' / 'normalization_eval.json').write_text(json.dumps(rep, ensure_ascii=False, indent=2), encoding='utf-8')
+    (RESULTS / 'normalization_eval.json').write_text(json.dumps(rep, ensure_ascii=False, indent=2), encoding='utf-8')
     md = to_markdown(rep)
-    (ROOT / 'results' / 'normalization_eval.md').write_text(md, encoding='utf-8')
+    (RESULTS / 'normalization_eval.md').write_text(md, encoding='utf-8')
     print(md)
 
 

@@ -14,8 +14,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
+RESULTS = ROOT / "research" / "evaluation" / "results"
 VIDEO_ID_RE = re.compile(r"^[A-Za-z0-9_-]{11}$")
 
 
@@ -125,7 +126,7 @@ def main():
         'unique_seed_query_strings': len(queries),
         'verified_relevance_labels': 0,
     })
-    with (ROOT/'results'/'dataset_profile.json').open('w', encoding='utf-8') as f:
+    with (RESULTS/'dataset_profile.json').open('w', encoding='utf-8') as f:
         json.dump(dict(stats),f,ensure_ascii=False,indent=2)
     print(json.dumps(dict(stats),ensure_ascii=False,indent=2))
 
