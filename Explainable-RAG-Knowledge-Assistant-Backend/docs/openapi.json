@@ -1,0 +1,601 @@
+{
+  "components": {
+    "schemas": {
+      "ErrorBody": {
+        "properties": {
+          "code": {
+            "description": "Machine-readable, e.g. invalid_request, unauthorized, video_not_found, global_scope_disabled, method_unavailable, engine_not_ready, internal_error",
+            "title": "Code",
+            "type": "string"
+          },
+          "details": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "request_id"
+        ],
+        "title": "ErrorBody",
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorBody"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "title": "ErrorResponse",
+        "type": "object"
+      },
+      "HealthResponse": {
+        "properties": {
+          "api_version": {
+            "title": "Api Version",
+            "type": "string"
+          },
+          "auth_enabled": {
+            "title": "Auth Enabled",
+            "type": "boolean"
+          },
+          "corpus_documents": {
+            "title": "Corpus Documents",
+            "type": "integer"
+          },
+          "engine_ready": {
+            "title": "Engine Ready",
+            "type": "boolean"
+          },
+          "semantic": {
+            "$ref": "#/components/schemas/SemanticStatus"
+          },
+          "service": {
+            "title": "Service",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "ok",
+              "degraded"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          },
+          "videos": {
+            "title": "Videos",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "status",
+          "service",
+          "version",
+          "api_version",
+          "engine_ready",
+          "corpus_documents",
+          "videos",
+          "semantic",
+          "auth_enabled"
+        ],
+        "title": "HealthResponse",
+        "type": "object"
+      },
+      "NormalizationInfo": {
+        "properties": {
+          "coverage": {
+            "title": "Coverage",
+            "type": "number"
+          },
+          "normalized_query": {
+            "title": "Normalized Query",
+            "type": "string"
+          },
+          "status": {
+            "description": "normalized | partial | failed | unchanged | empty",
+            "title": "Status",
+            "type": "string"
+          },
+          "used": {
+            "description": "Whether the normalised query was actually used for retrieval.",
+            "title": "Used",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "status",
+          "normalized_query",
+          "coverage",
+          "used"
+        ],
+        "title": "NormalizationInfo",
+        "type": "object"
+      },
+      "RetrievalMethod": {
+        "description": "Stable API identifiers. Mapped to engine method names in the service layer.",
+        "enum": [
+          "bm25",
+          "char_tfidf",
+          "labse",
+          "normalized_bm25",
+          "normalized_labse",
+          "multiview_bm25",
+          "multiview_labse",
+          "multiview_hybrid"
+        ],
+        "title": "RetrievalMethod",
+        "type": "string"
+      },
+      "RetrieveRequest": {
+        "additionalProperties": false,
+        "examples": [
+          {
+            "method": "bm25",
+            "query": "Me wetakolu video eke poththa saha dara ain karana eka gana viewers la monawada kiyanne?",
+            "scope": {
+              "video_id": "-3a4abtQH3E"
+            },
+            "top_k": 5
+          }
+        ],
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/RetrievalMethod",
+            "default": "bm25"
+          },
+          "query": {
+            "description": "Singlish, Sinhala or English question.",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Query",
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/RetrieveScope"
+          },
+          "top_k": {
+            "default": 10,
+            "maximum": 50.0,
+            "minimum": 1.0,
+            "title": "Top K",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "RetrieveRequest",
+        "type": "object"
+      },
+      "RetrieveResponse": {
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/RetrievalMethod"
+          },
+          "normalization": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NormalizationInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "notice": {
+            "description": "Results are retrieved candidates, not verified evidence or generated answers.",
+            "title": "Notice",
+            "type": "string"
+          },
+          "query": {
+            "title": "Query",
+            "type": "string"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "result_count": {
+            "title": "Result Count",
+            "type": "integer"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/RetrievedComment"
+            },
+            "title": "Results",
+            "type": "array"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ScopeInfo"
+          },
+          "top_k": {
+            "title": "Top K",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "request_id",
+          "query",
+          "method",
+          "top_k",
+          "scope",
+          "results",
+          "result_count",
+          "notice"
+        ],
+        "title": "RetrieveResponse",
+        "type": "object"
+      },
+      "RetrieveScope": {
+        "additionalProperties": false,
+        "properties": {
+          "video_id": {
+            "anyOf": [
+              {
+                "maxLength": 64,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Search ONLY this video's comments (filtering happens before ranking). null = global research corpus. This is a retrieval filter, NOT proof of ownership: the caller must authorise the user for this video before forwarding the request.",
+            "title": "Video Id"
+          }
+        },
+        "title": "RetrieveScope",
+        "type": "object"
+      },
+      "RetrievedComment": {
+        "properties": {
+          "document_id": {
+            "description": "Stable surrogate ID (not a YouTube comment ID).",
+            "title": "Document Id",
+            "type": "string"
+          },
+          "likes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Likes"
+          },
+          "rank": {
+            "minimum": 1.0,
+            "title": "Rank",
+            "type": "integer"
+          },
+          "score": {
+            "description": "Method-specific; compare only within one response.",
+            "title": "Score",
+            "type": "number"
+          },
+          "score_type": {
+            "enum": [
+              "bm25",
+              "char_tfidf_cosine",
+              "labse_cosine",
+              "rrf"
+            ],
+            "title": "Score Type",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "video_id": {
+            "title": "Video Id",
+            "type": "string"
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Video link; comment-level permalinks are not available.",
+            "title": "Video Url"
+          },
+          "views": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ViewContribution"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Multi-view methods only.",
+            "title": "Views"
+          }
+        },
+        "required": [
+          "rank",
+          "document_id",
+          "video_id",
+          "text",
+          "likes",
+          "video_url",
+          "score",
+          "score_type"
+        ],
+        "title": "RetrievedComment",
+        "type": "object"
+      },
+      "ScopeInfo": {
+        "properties": {
+          "documents_searched": {
+            "title": "Documents Searched",
+            "type": "integer"
+          },
+          "ownership_verified": {
+            "const": false,
+            "default": false,
+            "description": "Always false: this service never verifies creator/channel ownership.",
+            "title": "Ownership Verified",
+            "type": "boolean"
+          },
+          "type": {
+            "enum": [
+              "video",
+              "global"
+            ],
+            "title": "Type",
+            "type": "string"
+          },
+          "video_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Id"
+          }
+        },
+        "required": [
+          "type",
+          "video_id",
+          "documents_searched"
+        ],
+        "title": "ScopeInfo",
+        "type": "object"
+      },
+      "SemanticStatus": {
+        "properties": {
+          "index_present": {
+            "title": "Index Present",
+            "type": "boolean"
+          },
+          "loaded": {
+            "title": "Loaded",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "index_present",
+          "loaded"
+        ],
+        "title": "SemanticStatus",
+        "type": "object"
+      },
+      "ViewContribution": {
+        "properties": {
+          "rank": {
+            "title": "Rank",
+            "type": "integer"
+          },
+          "score": {
+            "title": "Score",
+            "type": "number"
+          },
+          "view": {
+            "description": "e.g. \"BM25/original\", \"LaBSE/normalized\"",
+            "title": "View",
+            "type": "string"
+          }
+        },
+        "required": [
+          "view",
+          "rank",
+          "score"
+        ],
+        "title": "ViewContribution",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Explainable RAG Knowledge Assistant - retrieval service (v1). Server-to-server API: call from Next.js Route Handlers or the team API gateway.",
+    "title": "Singlish Retrieval Engine API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "description": "Liveness/readiness. Unauthenticated; exposes no corpus content.",
+        "operationId": "getHealth",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Health",
+        "tags": [
+          "system"
+        ]
+      }
+    },
+    "/v1/retrieve": {
+      "post": {
+        "description": "Rank YouTube comments for a question, optionally scoped to one video (filter before ranking).",
+        "operationId": "retrieveComments",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Service-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrieveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetrieveResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Retrieve",
+        "tags": [
+          "retrieval"
+        ]
+      }
+    }
+  }
+}
