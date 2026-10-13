@@ -28,8 +28,11 @@ data/                       local data (git-ignored raw export; see Data ethics)
 py -3.12 -m venv .venv
 .venv\Scripts\Activate.ps1
 pip install -e ".[dev,prototype]"          # add ,semantic for LaBSE methods
+# (or skip the install and run:  $env:PYTHONPATH = "src")
 
-uvicorn rag_service.api.main:app --port 8000 --reload   # API: http://127.0.0.1:8000/docs
+$env:RAG_SERVICE_API_KEY = "dev-local-key"   # service-to-service key; unset = localhost-only dev mode
+python run.py                                           # simplest: API on http://127.0.0.1:8000 (see run.py --help)
+# equivalent: python -m uvicorn rag_service.api.main:app --host 127.0.0.1 --port 8000 --reload   # http://127.0.0.1:8000/docs
 python -m prototype.gradio_app                          # Gradio demo
 python -m unittest discover -s tests -t .               # all tests
 ```
