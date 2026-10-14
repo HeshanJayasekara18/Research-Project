@@ -1,0 +1,105 @@
+{
+  "created_at_utc": "2026-10-14T17:02:11+00:00",
+  "git_commit": "3f06ce2cfb74098a9fc525b77746b574cd8e3e72",
+  "dataset": {
+    "file": "data/comments_clean.csv",
+    "sha256": "e2b4b96e461a398560a43222333e043e1f66bcacec7e206bc11a72a33ef583a2",
+    "documents": 10343
+  },
+  "scope": "video (each question searches only its own video; filtering before ranking)",
+  "top_k_per_method": 10,
+  "methods_evaluated": [
+    "bm25",
+    "normalized_bm25",
+    "char_tfidf",
+    "multiview_bm25",
+    "labse",
+    "multiview_hybrid"
+  ],
+  "methods_unavailable": {},
+  "semantic_status": "LaBSE index loaded (10,343 docs, model sentence-transformers/LaBSE).",
+  "pool_rule": "full deduplicated union of every evaluated method's top-10; not truncated; no extra candidates",
+  "sheet_order": "seeded random shuffle per query (seed 20261014); identical order in A and B",
+  "queries": {
+    "Q1": {
+      "video_id": "5AJ81b3rqmc",
+      "video_comments": 347,
+      "pooled_candidates": 29,
+      "retrieved_per_method": {
+        "bm25": 10,
+        "normalized_bm25": 10,
+        "char_tfidf": 10,
+        "multiview_bm25": 10,
+        "labse": 10,
+        "multiview_hybrid": 10
+      },
+      "max_seed_query_jaccard": 0.235,
+      "closest_seed_query": "Viewers la next video ekata monawada illanne?",
+      "design_note": "Mostly Singlish comments; product-recommendation need."
+    },
+    "Q2": {
+      "video_id": "QL2J3Va-fJM",
+      "video_comments": 471,
+      "pooled_candidates": 39,
+      "retrieved_per_method": {
+        "bm25": 10,
+        "normalized_bm25": 10,
+        "char_tfidf": 10,
+        "multiview_bm25": 10,
+        "labse": 10,
+        "multiview_hybrid": 10
+      },
+      "max_seed_query_jaccard": 0.2,
+      "closest_seed_query": "salli nathuwa podi wayasin business ekak patan ganna puluwanda?",
+      "design_note": "Mixed English, Singlish and Sinhala-script comments."
+    },
+    "Q3": {
+      "video_id": "NXDizOPtZ98",
+      "video_comments": 366,
+      "pooled_candidates": 33,
+      "retrieved_per_method": {
+        "bm25": 4,
+        "normalized_bm25": 10,
+        "char_tfidf": 10,
+        "multiview_bm25": 10,
+        "labse": 10,
+        "multiview_hybrid": 10
+      },
+      "max_seed_query_jaccard": 0.15,
+      "closest_seed_query": "Wena ratawala kama jathi (international recipes) hadanna kiyala viewers la request karanawada?",
+      "design_note": "Sinhala-script retrieval need (about half the comments are Sinhala script)."
+    },
+    "Q4": {
+      "video_id": "wrxMnZEWT7U",
+      "video_comments": 400,
+      "pooled_candidates": 39,
+      "retrieved_per_method": {
+        "bm25": 10,
+        "normalized_bm25": 10,
+        "char_tfidf": 10,
+        "multiview_bm25": 10,
+        "labse": 10,
+        "multiview_hybrid": 10
+      },
+      "max_seed_query_jaccard": 0.263,
+      "closest_seed_query": "Me bath eka rice cooker eke hadanna puluwanda kiyala kattiya ahanawada?",
+      "design_note": "Sinhala-script heavy video; cross-script need."
+    },
+    "Q5": {
+      "video_id": "oLACzeVFCUk",
+      "video_comments": 269,
+      "pooled_candidates": 28,
+      "retrieved_per_method": {
+        "bm25": 10,
+        "normalized_bm25": 10,
+        "char_tfidf": 10,
+        "multiview_bm25": 10,
+        "labse": 10,
+        "multiview_hybrid": 10
+      },
+      "max_seed_query_jaccard": 0.25,
+      "closest_seed_query": "Pravegaya film eke dialogs hari scenes hari gana kattiya monawada kiyanne?",
+      "design_note": "Expected to have little or no relevant evidence (insufficient-evidence case)."
+    }
+  }
+}
