@@ -145,6 +145,14 @@ class TestComparisonScope(unittest.TestCase):
             _, rows, vid_col = self.rows('video eka hari lassanai', vid, 10)
             self.assertTrue(all(r[vid_col] == vid for r in rows), vid)
 
+    def test_comparison_never_leaks_on_any_video(self):
+        # Every video, every comparable method at once: all ranked rows come from the chosen video,
+        # and the scope header reports that video's comment count (filtering happens before ranking).
+        for vid in self.app.engine().video_ids():
+            head, rows, vid_col = self.rows('video eka hari lassanai', vid, 10)
+            self.assertEqual({r[vid_col] for r in rows} - {vid}, set(), vid)
+            self.assertIn(f"**{len(self.app.engine().video_rows[vid])}** comments searched", head)
+
     def test_comparison_global_mode_kept(self):
         head, rows, vid_col = self.rows(DEMO_QUERY, '')
         self.assertIn('global research corpus', head)
