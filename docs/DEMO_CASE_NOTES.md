@@ -54,4 +54,4 @@ For the same question, ranks 3–10 under BM25 include comments such as
 "Nice video ❤", "Very useful video" and "Yes very good video". They are
 retrieved only because the question contains the words *video* / *viewers*.
 They are **retrieved candidates, not evidence** about Wetakolu preparation.
-The app's *Matched query words* column makes this visible (e.g. only `video`).
+The app's *Shared words with query* column makes this visible (e.g. only `video`).
