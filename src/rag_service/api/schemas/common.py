@@ -11,6 +11,12 @@ class SemanticStatus(BaseModel):
     loaded: bool
 
 
+class LLMStatus(BaseModel):
+    provider: str = Field(description='"disabled" or the configured provider, e.g. "gemini".')
+    model: str
+    enabled: bool
+
+
 class HealthResponse(BaseModel):
     status: Literal['ok', 'degraded']
     service: str
@@ -21,6 +27,7 @@ class HealthResponse(BaseModel):
     videos: int
     semantic: SemanticStatus
     auth_enabled: bool
+    llm: LLMStatus | None = None
 
 
 class ErrorBody(BaseModel):

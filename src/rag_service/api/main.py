@@ -13,22 +13,26 @@ from rag_service import SERVICE_VERSION
 from rag_service.api.errors import install_error_handlers
 from rag_service.api.routes import v1_router
 from rag_service.core.config import Settings, load_settings
+from rag_service.rag.ask_service import AskService
+from rag_service.rag.providers import LLMProvider, build_provider
 from rag_service.services.retrieval_service import RetrievalService, build_engine
 
 log = logging.getLogger('rag_service')
 _RID = re.compile(r'^[A-Za-z0-9._-]{1,64}$')
 
 
-def create_app(settings: Settings | None = None, engine=None) -> FastAPI:
-    """`engine` may be injected (tests); otherwise the corpus is loaded at startup."""
+def create_app(settings: Settings | None = None, engine=None, llm_provider: LLMProvider | None = None) -> FastAPI:
+    """`engine` and `llm_provider` may be injected (tests); otherwise they come from settings at startup."""
     settings = settings or load_settings()
     settings.validate()
     if not settings.auth_enabled:
-        log.warning('RAG_SERVICE_API_KEY not set: /v1/retrieve is UNAUTHENTICATED (development only).')
+        log.warning('RAG_SERVICE_API_KEY not set: /v1/retrieve and /v1/ask are UNAUTHENTICATED (development only).')
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
-        app.state.retrieval_service = RetrievalService(engine or build_engine(), settings)
+        retrieval = RetrievalService(engine or build_engine(), settings)
+        app.state.retrieval_service = retrieval
+        app.state.ask_service = AskService(retrieval, llm_provider or build_provider(settings))
         yield
 
     app = FastAPI(title='Singlish Retrieval Engine API', version=SERVICE_VERSION, lifespan=lifespan,
@@ -36,6 +40,7 @@ def create_app(settings: Settings | None = None, engine=None) -> FastAPI:
                               'Server-to-server API: call from Next.js Route Handlers or the team API gateway.')
     app.state.settings = settings
     app.state.retrieval_service = None
+    app.state.ask_service = None
 
     @app.middleware('http')
     async def add_request_id(request: Request, call_next):

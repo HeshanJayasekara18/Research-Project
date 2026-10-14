@@ -1,6 +1,158 @@
 {
   "components": {
     "schemas": {
+      "AskRequest": {
+        "additionalProperties": false,
+        "examples": [
+          {
+            "query": "Me wetakolu video eke poththa saha dara ain karana eka gana viewers la monawada kiyanne?",
+            "scope": {
+              "video_id": "-3a4abtQH3E"
+            }
+          }
+        ],
+        "properties": {
+          "candidates": {
+            "default": 20,
+            "description": "Retrieved candidates considered for evidence.",
+            "maximum": 50.0,
+            "minimum": 5.0,
+            "title": "Candidates",
+            "type": "integer"
+          },
+          "method": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RetrievalMethod"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Retrieval method. Default: multiview_hybrid if the LaBSE index is available, otherwise multiview_bm25."
+          },
+          "query": {
+            "description": "Singlish, Sinhala or English question.",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Query",
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/AskScope"
+          }
+        },
+        "required": [
+          "query",
+          "scope"
+        ],
+        "title": "AskRequest",
+        "type": "object"
+      },
+      "AskResponse": {
+        "properties": {
+          "answer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Sinhala answer with [E#] labels; null unless status=\"answered\".",
+            "title": "Answer"
+          },
+          "citations": {
+            "description": "The supplied comments the answer cites (subset of evidence_supplied).",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceItem"
+            },
+            "title": "Citations",
+            "type": "array"
+          },
+          "evidence_supplied": {
+            "description": "Every comment sent to the model, in prompt order.",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceItem"
+            },
+            "title": "Evidence Supplied",
+            "type": "array"
+          },
+          "generation": {
+            "$ref": "#/components/schemas/GenerationInfo"
+          },
+          "insufficient_reason": {
+            "anyOf": [
+              {
+                "enum": [
+                  "no_content_term_match",
+                  "model_declined"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Insufficient Reason"
+          },
+          "notice": {
+            "title": "Notice",
+            "type": "string"
+          },
+          "query": {
+            "title": "Query",
+            "type": "string"
+          },
+          "request_id": {
+            "title": "Request Id",
+            "type": "string"
+          },
+          "retrieval": {
+            "$ref": "#/components/schemas/RetrievalSummary"
+          },
+          "status": {
+            "enum": [
+              "answered",
+              "insufficient_evidence"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "request_id",
+          "query",
+          "status",
+          "answer",
+          "citations",
+          "evidence_supplied",
+          "retrieval",
+          "generation",
+          "notice"
+        ],
+        "title": "AskResponse",
+        "type": "object"
+      },
+      "AskScope": {
+        "additionalProperties": false,
+        "properties": {
+          "video_id": {
+            "description": "Required: the answer is grounded only in this video's comments (filtered before ranking). A retrieval filter, NOT proof of ownership: the caller must authorise the user first.",
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "title": "Video Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "video_id"
+        ],
+        "title": "AskScope",
+        "type": "object"
+      },
       "ErrorBody": {
         "properties": {
           "code": {
@@ -52,6 +204,79 @@
         "title": "ErrorResponse",
         "type": "object"
       },
+      "EvidenceItem": {
+        "properties": {
+          "comment_text": {
+            "description": "Original comment text, unmodified.",
+            "title": "Comment Text",
+            "type": "string"
+          },
+          "document_id": {
+            "description": "Internal surrogate document ID (not a YouTube comment ID).",
+            "title": "Document Id",
+            "type": "string"
+          },
+          "label": {
+            "description": "Label shown to the model, e.g. \"E1\".",
+            "title": "Label",
+            "type": "string"
+          },
+          "matched_terms": {
+            "description": "Query content terms found in the comment (why it was selected).",
+            "items": {
+              "type": "string"
+            },
+            "title": "Matched Terms",
+            "type": "array"
+          },
+          "retrieval_rank": {
+            "title": "Retrieval Rank",
+            "type": "integer"
+          },
+          "video_id": {
+            "title": "Video Id",
+            "type": "string"
+          },
+          "video_reference": {
+            "$ref": "#/components/schemas/VideoReference"
+          }
+        },
+        "required": [
+          "label",
+          "document_id",
+          "video_id",
+          "comment_text",
+          "retrieval_rank",
+          "matched_terms",
+          "video_reference"
+        ],
+        "title": "EvidenceItem",
+        "type": "object"
+      },
+      "GenerationInfo": {
+        "properties": {
+          "called": {
+            "description": "False when the pipeline stopped before calling the model.",
+            "title": "Called",
+            "type": "boolean"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "model",
+          "called"
+        ],
+        "title": "GenerationInfo",
+        "type": "object"
+      },
       "HealthResponse": {
         "properties": {
           "api_version": {
@@ -69,6 +294,16 @@
           "engine_ready": {
             "title": "Engine Ready",
             "type": "boolean"
+          },
+          "llm": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/LLMStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "semantic": {
             "$ref": "#/components/schemas/SemanticStatus"
@@ -106,6 +341,30 @@
           "auth_enabled"
         ],
         "title": "HealthResponse",
+        "type": "object"
+      },
+      "LLMStatus": {
+        "properties": {
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "provider": {
+            "description": "\"disabled\" or the configured provider, e.g. \"gemini\".",
+            "title": "Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "model",
+          "enabled"
+        ],
+        "title": "LLMStatus",
         "type": "object"
       },
       "NormalizationInfo": {
@@ -152,6 +411,57 @@
         ],
         "title": "RetrievalMethod",
         "type": "string"
+      },
+      "RetrievalSummary": {
+        "properties": {
+          "candidates_rejected_no_content_match": {
+            "title": "Candidates Rejected No Content Match",
+            "type": "integer"
+          },
+          "candidates_retrieved": {
+            "title": "Candidates Retrieved",
+            "type": "integer"
+          },
+          "candidates_selected": {
+            "title": "Candidates Selected",
+            "type": "integer"
+          },
+          "method": {
+            "$ref": "#/components/schemas/RetrievalMethod"
+          },
+          "normalized_query": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalized Query"
+          },
+          "query_content_terms": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Query Content Terms",
+            "type": "array"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/ScopeInfo"
+          }
+        },
+        "required": [
+          "method",
+          "scope",
+          "normalized_query",
+          "query_content_terms",
+          "candidates_retrieved",
+          "candidates_selected",
+          "candidates_rejected_no_content_match"
+        ],
+        "title": "RetrievalSummary",
+        "type": "object"
       },
       "RetrieveRequest": {
         "additionalProperties": false,
@@ -422,6 +732,33 @@
         "title": "SemanticStatus",
         "type": "object"
       },
+      "VideoReference": {
+        "properties": {
+          "granularity": {
+            "const": "video",
+            "default": "video",
+            "description": "Always \"video\": the dataset has no comment IDs, so this links the video, not the individual comment.",
+            "title": "Granularity",
+            "type": "string"
+          },
+          "url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Url"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "title": "VideoReference",
+        "type": "object"
+      },
       "ViewContribution": {
         "properties": {
           "rank": {
@@ -455,9 +792,119 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/v1/ask": {
+      "post": {
+        "description": "Answer in Sinhala from the selected video's comments only, citing the exact comments used.\n\nReturns status \"insufficient_evidence\" instead of guessing. 503 llm_unavailable when no LLM is\nconfigured; 502 llm_error / llm_invalid_output / llm_unsupported_citation when the model fails or\ncites comments it was not given (the answer is then withheld).",
+        "operationId": "askGrounded",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-Service-Key",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Service-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AskRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Ask",
+        "tags": [
+          "rag"
+        ]
+      }
+    },
     "/v1/health": {
       "get": {
-        "description": "Liveness/readiness. Unauthenticated; exposes no corpus content.",
+        "description": "Liveness/readiness. Unauthenticated; exposes no corpus content and never calls the LLM.",
         "operationId": "getHealth",
         "responses": {
           "200": {

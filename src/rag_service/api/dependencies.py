@@ -12,6 +12,7 @@ from fastapi import Header, Request
 
 from rag_service.api.errors import ApiError
 from rag_service.core.config import Settings
+from rag_service.rag.ask_service import AskService
 from rag_service.services.retrieval_service import RetrievalService
 
 
@@ -21,6 +22,13 @@ def get_settings(request: Request) -> Settings:
 
 def get_retrieval_service(request: Request) -> RetrievalService:
     service = getattr(request.app.state, 'retrieval_service', None)
+    if service is None:
+        raise ApiError(503, 'engine_not_ready', 'Retrieval engine is not loaded yet.')
+    return service
+
+
+def get_ask_service(request: Request) -> AskService:
+    service = getattr(request.app.state, 'ask_service', None)
     if service is None:
         raise ApiError(503, 'engine_not_ready', 'Retrieval engine is not loaded yet.')
     return service

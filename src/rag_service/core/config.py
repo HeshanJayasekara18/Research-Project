@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 # Repository layout (src/rag_service/core/config.py -> repo root is parents[3]).
@@ -24,6 +24,11 @@ class Settings:
     service_api_key: str | None = None       # shared secret for server-to-server calls
     allow_global_scope: bool = True          # allow video_id=null (whole research corpus)
     cors_origins: tuple[str, ...] = ()       # empty: no browser CORS (server-side calls only)
+    # LLM for /v1/ask. Disabled unless explicitly configured; the key never appears in repr/logs.
+    llm_provider: str = 'disabled'           # disabled | gemini
+    llm_model: str = 'gemini-3.8-flash'
+    llm_api_key: str | None = field(default=None, repr=False)
+    llm_timeout_s: float = 30.0
 
     @property
     def auth_enabled(self) -> bool:
@@ -41,4 +46,8 @@ def load_settings() -> Settings:
         service_api_key=os.environ.get('RAG_SERVICE_API_KEY') or None,
         allow_global_scope=_bool(os.environ.get('RAG_ALLOW_GLOBAL_SCOPE'), True),
         cors_origins=tuple(o.strip() for o in origins.split(',') if o.strip()),
+        llm_provider=os.environ.get('RAG_LLM_PROVIDER', 'disabled').strip().lower() or 'disabled',
+        llm_model=os.environ.get('RAG_LLM_MODEL', 'gemini-3.8-flash').strip() or 'gemini-3.8-flash',
+        llm_api_key=os.environ.get('RAG_LLM_API_KEY') or os.environ.get('GEMINI_API_KEY') or None,
+        llm_timeout_s=float(os.environ.get('RAG_LLM_TIMEOUT_S', '30')),
     )
