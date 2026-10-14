@@ -1,8 +1,8 @@
 # C3 — Explainable RAG Knowledge Assistant & Singlish Retrieval Engine
 
-Python service for research component C3. It retrieves YouTube comments for Singlish, Sinhala or English questions using a FastAPI service (`GET /v1/health`, `POST /v1/retrieve`) built on the research retrieval engine (BM25, character TF-IDF, optional LaBSE, Singlish → Sinhala normalisation, RRF multi-view fusion).
+Python service for research component C3. It retrieves YouTube comments (`POST /v1/retrieve`) and produces evidence-grounded Sinhala answers with citations (`POST /v1/ask`, M6, see [docs/RAG_M6.md](docs/RAG_M6.md)). Retrieval covers YouTube comments for Singlish, Sinhala or English questions using a FastAPI service (`GET /v1/health`, `POST /v1/retrieve`) built on the research retrieval engine (BM25, character TF-IDF, optional LaBSE, Singlish → Sinhala normalisation, RRF multi-view fusion).
 
-It is **not** yet a complete RAG system. Answer generation and claim verification are future milestones, and no method is claimed to outperform a baseline until independently evaluated.
+It is **not** yet a complete RAG system. Minimal single-comment grounded generation exists (M6), but thread-aware RAG and claim (NLI) verification are future milestones, the evidence selection is unevaluated, and no method is claimed to outperform a baseline until independently evaluated.
 
 ## Layout
 
@@ -71,7 +71,9 @@ If the corpus changes, **rebuild** `data/labse_index.npz` too, otherwise the emb
 
 **Implemented:** dataset ingestion, a privacy-minimised corpus, BM25 and char TF-IDF baselines, optional LaBSE, experimental Singlish normalisation and multi-view RRF, video-scoped retrieval, the Gradio prototype, and the v1 retrieval API.
 
-**Not implemented or validated:** comment-level permalinks, thread-aware RAG, answer generation, NLI verification, graded relevance labels, and independent IR evaluation. **Do not claim** improvements from normalisation, multi-view retrieval or verification until they are experimentally compared. Diagnostic positive pairs may be biased because each query was produced from its document.
+**Implemented in M6, not yet validated:** `/v1/ask` grounded Sinhala answers with citation validation (mock-tested; no live answer recorded yet).
+
+**Not implemented or validated:** comment-level permalinks, thread-aware RAG, NLI verification, graded relevance labels, and independent IR evaluation. **Do not claim** improvements from normalisation, multi-view retrieval or verification until they are experimentally compared. Diagnostic positive pairs may be biased because each query was produced from its document.
 
 ## Data ethics and limitations
 
