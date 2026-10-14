@@ -37,6 +37,25 @@ BM25/cosine scores have no calibrated cut-off, so **no score thresholds are used
 - Purely semantic matches with no shared term are excluded, so recall is lowered on purpose.
 - The generic-word list and the edit-distance rule are hand-written, not tuned or evaluated on labelled data. They need the planned human relevance benchmark.
 
+## Evidence-selector review (known weakness, not validated)
+
+**The current rule admits unrelated comments.** One shared content word is enough to qualify. Observed in the rice/water demo (video `_uhQvDg6VtA`):
+
+- `DF89D0BD6F474` was selected only because it contains `bath` (rice), but it is about biryani authenticity, not about cooking without water.
+- A comment containing `wathura` (water) in an unrelated context was selected the same way.
+
+Ordering by the number of matched terms puts the best match (`D21DBE631C8CB`, 3 terms) first, but weak one-term matches still fill the remaining slots. The heuristic has **not** been validated: there are no relevance labels for evidence yet, so its precision and recall are unknown.
+
+**Improvement plan.** Each step is to be tested on the human-annotated relevance benchmark. Thresholds are chosen on a development split and reported on a held-out split, never tuned on the demo questions.
+
+1. **Measure first.** Annotate, per question, which retrieved candidates actually answer it (graded 0/1/2). Report evidence precision@k, recall and the "no relevant evidence" rate for the current rule. This is the baseline.
+2. **Term informativeness instead of a hand list.** Weight matched terms by IDF within the video, so a shared rare topic word counts more than a common one. Compare "≥1 term" against "IDF mass ≥ τ", with τ chosen on the dev split.
+3. **Coverage of the question.** Require that matched terms cover a minimum share of the question's content terms, or of its main noun phrase. Compare against step 2.
+4. **Cross-encoder or LLM relevance judgement.** Ask a reranker or the LLM "does this comment answer the question? yes/no" per candidate, and report agreement with the human labels before relying on it.
+5. **Abstention calibration.** Use the benchmark's "no relevant evidence" questions to measure how often each variant wrongly answers instead of abstaining.
+
+Until step 1 exists, every selector change is a hypothesis, and the demos are not evidence that it works.
+
 ## Prompt grounding rules (summary of `prompt.py`)
 
 - **Comments only:** use only the numbered comments, with no outside knowledge.
@@ -74,6 +93,13 @@ BM25/cosine scores have no calibrated cut-off, so **no score thresholds are used
 | 1. Wetakolu, video `-3a4abtQH3E` | Selected `DD488D4D88EF8` ("Wetakolu pothha … ain karanna") and `DB8B1DE7D2790` ("… vatakolu vala dara ain karanava …"). All "Nice video" comments rejected. | **Not obtained.** Gemini returned HTTP 503 "high demand" for gemini-3.8/3.7/3.5-flash. gemini-2.5-flash returned 404 (retired for new users). |
 | 2. Rice/water, video `_uhQvDg6VtA` | Top evidence `D21DBE631C8CB` "බත් එක හැදෙන්න වතුර දැම්මෙ නැහැනේ…" (3 matched terms via the normalised query), plus 5 weaker one-term matches | **Not obtained** (same HTTP 503) |
 | 3. Unrelated (iPhone battery) | 20 retrieved, 0 selected, 20 rejected (generic words only) | Correctly `insufficient_evidence`, **model not called** |
+
+Follow-up controlled attempt (M6 checkpoint session):
+
+- The model list (one request) showed `gemini-3.1-flash-lite` (stable).
+- **One** `/v1/ask` call was made for demo 1 with `method: bm25`.
+- Result: **HTTP 503 "This model is currently experiencing high demand"** (returned by the API as `502 llm_error`).
+- Per the plan, no further retries or models were tried.
 
 Every provider failure was returned as `502 llm_error`. No answer was fabricated. Re-run the script when the provider has capacity, and record the real output before presenting it.
 
