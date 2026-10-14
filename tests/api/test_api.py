@@ -168,7 +168,7 @@ class TestContract(unittest.TestCase):
     def test_paths(self):
         from rag_service.core.config import Settings
         paths = create_app(Settings(), engine=object()).openapi()['paths']
-        self.assertEqual(set(paths), {'/v1/health', '/v1/retrieve'})
+        self.assertEqual(set(paths), {'/v1/health', '/v1/retrieve', '/v1/ask'})
 
 
 if __name__ == '__main__':
