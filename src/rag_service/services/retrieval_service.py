@@ -47,9 +47,10 @@ def _likes(doc) -> int | None:
 
 
 class RetrievalService:
-    def __init__(self, engine: RetrievalEngine, settings: Settings):
+    def __init__(self, engine: RetrievalEngine, settings: Settings, corpus_id: str = 'v1'):
         self.engine = engine
         self.settings = settings
+        self.corpus_id = corpus_id
         # The engine lazily builds caches (scoped BM25, LaBSE, normaliser); serialise access.
         self._lock = threading.Lock()
 
@@ -61,24 +62,40 @@ class RetrievalService:
             semantic=SemanticStatus(index_present=index_present, loaded=self.engine._semantic is not None),
             auth_enabled=self.settings.auth_enabled)
 
-    def _scope(self, video_id: str | None) -> ScopeInfo:
-        if video_id is None:
+    def corpus_summary(self) -> dict:
+        e = self.engine
+        return {'documents': len(e.docs), 'videos': len(e.video_ids()),
+                'domains': {d: len(r) for d, r in e.domain_rows.items()} if self.corpus_id != 'v1' else None,
+                'semantic_index_present': e.has_semantic_index()}
+
+    def _scope(self, video_id: str | None, domain: str | None = None) -> tuple[ScopeInfo, str | None]:
+        """Validate the scope and return (ScopeInfo, engine scope key). The key selects rows BEFORE ranking."""
+        e, c = self.engine, self.corpus_id
+        if domain is not None and domain not in e.domain_rows:
+            raise ApiError(404, 'domain_not_found', f'Corpus {c} has no indexed comments in domain {domain!r}.')
+        if video_id is None and domain is None:
             if not self.settings.allow_global_scope:
                 raise ApiError(403, 'global_scope_disabled', 'A scope.video_id is required on this deployment.')
-            return ScopeInfo(type='global', video_id=None, documents_searched=len(self.engine.docs))
-        if video_id not in self.engine.video_rows:
-            raise ApiError(404, 'video_not_found', f'No indexed comments for video {video_id!r}.')
-        return ScopeInfo(type='video', video_id=video_id, documents_searched=len(self.engine.video_rows[video_id]))
+            return ScopeInfo(type='global', video_id=None, corpus=c, documents_searched=len(e.docs)), None
+        if video_id is None:
+            return ScopeInfo(type='domain', video_id=None, corpus=c, domain=domain,
+                             documents_searched=len(e.domain_rows[domain])), f'domain:{domain}'
+        if video_id not in e.video_rows:
+            raise ApiError(404, 'video_not_found', f'No indexed comments for video {video_id!r} in corpus {c}.')
+        if domain is not None and e.docs[e.video_rows[video_id][0]].get('domain') != domain:
+            raise ApiError(400, 'scope_conflict', f'Video {video_id!r} is not in domain {domain!r}.')
+        return ScopeInfo(type='video', video_id=video_id, corpus=c, domain=domain,
+                         documents_searched=len(e.video_rows[video_id])), video_id
 
     def retrieve(self, req: RetrieveRequest, request_id: str) -> RetrieveResponse:
         method = ENGINE_METHODS[req.method]
-        scope = self._scope(req.scope.video_id)
+        scope, scope_key = self._scope(req.scope.video_id, req.scope.domain)
         if _needs_semantic(method) and not self.engine.has_semantic_index():
             raise ApiError(503, 'method_unavailable',
                            f'Method {req.method.value!r} needs the LaBSE index, which is not built on this server.')
         try:
             with self._lock:
-                results, normalization = self._run(req, method, scope.video_id)
+                results, normalization = self._run(req, method, scope_key)
         except RuntimeError as exc:  # e.g. LaBSE model could not be loaded
             raise ApiError(503, 'method_unavailable', str(exc)) from exc
         return RetrieveResponse(
@@ -115,7 +132,11 @@ class RetrievalService:
         return RetrievedComment(
             rank=rank, document_id=doc['document_id'], video_id=doc['video_id'], text=doc['comment_text'],
             likes=_likes(doc), video_url=doc.get('youtube_video_url') or None,
-            score=float(score), score_type=score_type, views=views)
+            score=float(score), score_type=score_type, views=views,
+            comment_id=doc.get('comment_id'), domain=doc.get('domain') if doc.get('comment_id') else None,
+            parent_id=(doc.get('parent_id') or None) if doc.get('comment_id') else None,
+            thread_id=doc.get('thread_id') if doc.get('comment_id') else None,
+            is_reply=doc.get('is_reply') if doc.get('comment_id') else None)
 
 
 def build_engine() -> RetrievalEngine:

@@ -12,6 +12,8 @@ import re
 from collections import Counter, defaultdict
 from functools import lru_cache
 
+from pathlib import Path
+
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -95,9 +97,18 @@ class BM25:
         return scores
 
 
+DOMAIN_SCOPE_PREFIX = 'domain:'  # scope keys: a video ID, or "domain:<name>" (video IDs never contain ':')
+_DEFAULT_INDEX = object()
+
+
 class RetrievalEngine:
-    def __init__(self):
-        self.docs = load_corpus()
+    def __init__(self, docs: list[dict] | None = None, labse_index=_DEFAULT_INDEX, corpus_id: str = 'v1'):
+        """docs=None loads Corpus V1 (data/comments_clean.csv). Other corpora pass their documents
+        (each with document_id, video_id, comment_text, ...) and their own LaBSE index path, or None
+        when no dense index exists. Retrieval algorithms are identical for every corpus."""
+        self.corpus_id = corpus_id
+        self.labse_index = labse_index
+        self.docs = load_corpus() if docs is None else docs
         self.ids = [d['document_id'] for d in self.docs]
         self.by_id = {d['document_id']: d for d in self.docs}
         self.texts = [d['comment_text'] for d in self.docs]
@@ -116,24 +127,38 @@ class RetrievalEngine:
         for i, d in enumerate(self.docs):
             rows[d['video_id']].append(i)
         self.video_rows = dict(rows)  # plain dict: an unknown ID must never become an empty scope
-        self._video_bm25 = {}
+        # Domain scoping (Corpus V2): row indices per domain, used exactly like a video scope.
+        drows = defaultdict(list)
+        for i, d in enumerate(self.docs):
+            if d.get('domain'):
+                drows[d['domain']].append(i)
+        self.domain_rows = dict(drows)
+        self._video_bm25 = {}  # scoped BM25 cache, keyed by scope key (video ID or "domain:<name>")
+
+    def _rows_for(self, scope_key):
+        if scope_key.startswith(DOMAIN_SCOPE_PREFIX):
+            domain = scope_key[len(DOMAIN_SCOPE_PREFIX):]
+            if domain not in self.domain_rows:
+                raise ValueError(f'Unknown domain: {domain!r}')
+            return self.domain_rows[domain]
+        if scope_key not in self.video_rows:
+            raise ValueError(f'Unknown video ID: {scope_key!r}')
+        return self.video_rows[scope_key]
 
     def video_ids(self):
         """Videos with at least one comment, most comments first."""
         return sorted((v for v in self.video_rows if v), key=lambda v: (-len(self.video_rows[v]), v))
 
     def scope_rows(self, video_id):
-        """None -> global corpus. Otherwise the selected video's row indices."""
+        """None -> global corpus. Otherwise the row indices of a video, or of "domain:<name>"."""
         if not video_id:
             return None
-        if video_id not in self.video_rows:
-            raise ValueError(f'Unknown video ID: {video_id!r}')
-        return np.asarray(self.video_rows[video_id], dtype=np.int64)
+        return np.asarray(self._rows_for(video_id), dtype=np.int64)
 
     def _scoped_bm25(self, video_id):
         # BM25 statistics (IDF, average length) computed within the video only.
         if video_id not in self._video_bm25:
-            self._video_bm25[video_id] = BM25([self.texts[i] for i in self.video_rows[video_id]])
+            self._video_bm25[video_id] = BM25([self.texts[i] for i in self._rows_for(video_id)])
         return self._video_bm25[video_id]
 
     @property
@@ -147,8 +172,14 @@ class RetrievalEngine:
     def normalize(self, query: str):
         return self.normalizer.normalize(query)
 
+    def _labse_path(self):
+        # Corpus V1 uses the module-level LABSE_INDEX (looked up at call time, so tests can patch it).
+        path = getattr(self, 'labse_index', _DEFAULT_INDEX)
+        return LABSE_INDEX if path is _DEFAULT_INDEX else path
+
     def has_semantic_index(self):
-        return LABSE_INDEX.exists()
+        path = self._labse_path()
+        return path is not None and Path(path).exists()
 
     def semantic_status(self) -> tuple[bool, str]:
         """(ready, human-readable message) without raising; safe for the UI."""
@@ -161,9 +192,10 @@ class RetrievalEngine:
     def _load_semantic(self):
         if self._semantic is not None:
             return
-        if not LABSE_INDEX.exists():
+        path = self._labse_path()
+        if path is None or not Path(path).exists():
             raise RuntimeError('LaBSE index not built. Run: python scripts/build_labse_index.py')
-        archive = np.load(LABSE_INDEX, allow_pickle=False)
+        archive = np.load(path, allow_pickle=False)
         ids = archive['document_ids'].astype(str).tolist()
         if ids != self.ids:
             raise RuntimeError('LaBSE index document IDs differ from the active corpus '
