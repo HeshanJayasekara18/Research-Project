@@ -29,6 +29,8 @@ class Settings:
     llm_model: str = 'gemini-3.8-flash'
     llm_api_key: str | None = field(default=None, repr=False)
     llm_timeout_s: float = 30.0
+    # Corpus V2 (3-domain collection export). None = only the frozen Corpus V1 is served.
+    corpus_v2_dir: str | None = None
 
     @property
     def auth_enabled(self) -> bool:
@@ -50,4 +52,5 @@ def load_settings() -> Settings:
         llm_model=os.environ.get('RAG_LLM_MODEL', 'gemini-3.8-flash').strip() or 'gemini-3.8-flash',
         llm_api_key=os.environ.get('RAG_LLM_API_KEY') or os.environ.get('GEMINI_API_KEY') or None,
         llm_timeout_s=float(os.environ.get('RAG_LLM_TIMEOUT_S', '30')),
+        corpus_v2_dir=os.environ.get('RAG_CORPUS_V2_DIR') or None,
     )

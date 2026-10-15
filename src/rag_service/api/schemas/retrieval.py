@@ -26,8 +26,16 @@ class RetrievalMethod(str, Enum):
 ScoreType = Literal['bm25', 'char_tfidf_cosine', 'labse_cosine', 'rrf']
 
 
+CorpusId = Literal['v1', 'v2']
+Domain = Literal['food', 'gaming', 'education']
+
+
 class RetrieveScope(BaseModel):
     model_config = ConfigDict(extra='forbid')
+    corpus: CorpusId = Field(default='v1', description='v1 = frozen research corpus (default); '
+                                                       'v2 = 3-domain collection, when configured on the server.')
+    domain: Domain | None = Field(default=None, description='Corpus V2 only: restrict to one domain (filtered before ranking). '
+                                                            'May be combined with video_id if the video is in that domain.')
     video_id: str | None = Field(
         default=None, min_length=1, max_length=64, pattern=r'^[A-Za-z0-9_-]+$',
         description='Search ONLY this video\'s comments (filtering happens before ranking). '
@@ -69,6 +77,12 @@ class RetrievedComment(BaseModel):
     score: float = Field(description='Method-specific; compare only within one response.')
     score_type: ScoreType
     views: list[ViewContribution] | None = Field(default=None, description='Multi-view methods only.')
+    # Corpus V2 metadata (null for V1, whose IDs are surrogates and which has no thread data).
+    comment_id: str | None = Field(default=None, description='Real YouTube comment ID (Corpus V2).')
+    domain: str | None = None
+    parent_id: str | None = Field(default=None, description='Parent comment ID for replies (Corpus V2).')
+    thread_id: str | None = None
+    is_reply: bool | None = None
 
 
 class NormalizationInfo(BaseModel):
@@ -79,8 +93,10 @@ class NormalizationInfo(BaseModel):
 
 
 class ScopeInfo(BaseModel):
-    type: Literal['video', 'global']
+    type: Literal['video', 'global', 'domain']
     video_id: str | None
+    corpus: str = 'v1'
+    domain: str | None = None
     documents_searched: int
     ownership_verified: Literal[False] = Field(
         default=False, description='Always false: this service never verifies creator/channel ownership.')

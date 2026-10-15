@@ -28,6 +28,7 @@ class HealthResponse(BaseModel):
     semantic: SemanticStatus
     auth_enabled: bool
     llm: LLMStatus | None = None
+    corpora: dict[str, dict] | None = Field(default=None, description='Loaded corpora: v1 always; v2 when configured.')
 
 
 class ErrorBody(BaseModel):
