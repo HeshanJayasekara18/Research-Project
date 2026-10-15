@@ -65,9 +65,10 @@ class TestRetrieve(ApiTestBase):
                          [(d['document_id'], s) for d, s in expected])
         self.assertEqual([r['rank'] for r in body['results']], list(range(1, len(expected) + 1)))
         self.assertEqual({r['document_id'] for r in body['results'][:2]}, {'DB8B1DE7D2790', 'DD488D4D88EF8'})
+        # Original V1 scope fields unchanged; corpus/domain were added (additive contract change).
         self.assertEqual(body['scope'], {'type': 'video', 'video_id': DEMO_VIDEO,
                                          'documents_searched': len(self.engine.video_rows[DEMO_VIDEO]),
-                                         'ownership_verified': False})
+                                         'ownership_verified': False, 'corpus': 'v1', 'domain': None})
         self.assertEqual(body['result_count'], len(body['results']))
         self.assertIn('not human-verified evidence', body['notice'])
 
