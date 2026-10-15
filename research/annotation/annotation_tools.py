@@ -36,7 +36,12 @@ Key = tuple[str, str]  # (query_id, document_id)
 # ---------------------------------------------------------------- loading / validation
 def read_rows(path: Path) -> list[dict]:
     with Path(path).open(encoding='utf-8-sig', newline='') as f:
-        return list(csv.DictReader(f))
+        rows = list(csv.DictReader(f))
+    # Corpus V2 sheets/provenance use real YouTube comment_id as the document key.
+    for r in rows:
+        if 'document_id' not in r and 'comment_id' in r:
+            r['document_id'] = r['comment_id']
+    return rows
 
 
 def validate(path: Path, template: Path | None = None) -> dict:
