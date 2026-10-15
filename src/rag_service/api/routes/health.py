@@ -20,4 +20,7 @@ def health(request: Request, service: RetrievalService = Depends(get_retrieval_s
     if ask is not None:
         p = ask.provider
         result.llm = LLMStatus(provider=p.name, model=p.model, enabled=not isinstance(p, DisabledProvider))
+    services = getattr(request.app.state, 'retrieval_services', None) or {}
+    if services:
+        result.corpora = {c: s.corpus_summary() for c, s in services.items()}
     return result

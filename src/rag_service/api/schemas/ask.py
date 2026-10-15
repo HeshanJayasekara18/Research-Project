@@ -10,6 +10,7 @@ from rag_service.api.schemas.retrieval import RetrievalMethod, ScopeInfo
 
 class AskScope(BaseModel):
     model_config = ConfigDict(extra='forbid')
+    corpus: Literal['v1', 'v2'] = Field(default='v1', description='v1 (default) or v2 when configured.')
     video_id: str = Field(
         min_length=1, max_length=64, pattern=r'^[A-Za-z0-9_-]+$',
         description='Required: the answer is grounded only in this video\'s comments (filtered before ranking). '
