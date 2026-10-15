@@ -34,6 +34,24 @@ def get_ask_service(request: Request) -> AskService:
     return service
 
 
+def _for_corpus(request: Request, attr: str, corpus: str):
+    services = getattr(request.app.state, attr, None) or {}
+    if not services:
+        raise ApiError(503, 'engine_not_ready', 'Retrieval engine is not loaded yet.')
+    if corpus not in services:
+        raise ApiError(503, 'corpus_unavailable',
+                       f'Corpus {corpus!r} is not loaded on this server (set RAG_CORPUS_V2_DIR for v2).')
+    return services[corpus]
+
+
+def retrieval_service_for(request: Request, corpus: str) -> RetrievalService:
+    return _for_corpus(request, 'retrieval_services', corpus)
+
+
+def ask_service_for(request: Request, corpus: str) -> AskService:
+    return _for_corpus(request, 'ask_services', corpus)
+
+
 def require_service_key(request: Request,
                         x_service_key: str | None = Header(default=None, alias='X-Service-Key')) -> None:
     settings: Settings = request.app.state.settings

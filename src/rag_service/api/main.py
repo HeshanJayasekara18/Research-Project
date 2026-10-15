@@ -21,8 +21,10 @@ log = logging.getLogger('rag_service')
 _RID = re.compile(r'^[A-Za-z0-9._-]{1,64}$')
 
 
-def create_app(settings: Settings | None = None, engine=None, llm_provider: LLMProvider | None = None) -> FastAPI:
-    """`engine` and `llm_provider` may be injected (tests); otherwise they come from settings at startup."""
+def create_app(settings: Settings | None = None, engine=None, llm_provider: LLMProvider | None = None,
+               engine_v2=None) -> FastAPI:
+    """`engine` (Corpus V1), `engine_v2` and `llm_provider` may be injected (tests); otherwise they come
+    from settings at startup. Corpus V2 is loaded only if injected or RAG_CORPUS_V2_DIR is set."""
     settings = settings or load_settings()
     settings.validate()
     if not settings.auth_enabled:
@@ -30,9 +32,19 @@ def create_app(settings: Settings | None = None, engine=None, llm_provider: LLMP
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):
-        retrieval = RetrievalService(engine or build_engine(), settings)
-        app.state.retrieval_service = retrieval
-        app.state.ask_service = AskService(retrieval, llm_provider or build_provider(settings))
+        provider = llm_provider or build_provider(settings)
+        retrieval = RetrievalService(engine or build_engine(), settings, 'v1')
+        services = {'v1': retrieval}
+        v2 = engine_v2
+        if v2 is None and settings.corpus_v2_dir:
+            from rag_service.retrieval.corpus_v2 import build_engine_v2
+            v2 = build_engine_v2(settings.corpus_v2_dir)
+        if v2 is not None:
+            services['v2'] = RetrievalService(v2, settings, 'v2')
+        app.state.retrieval_services = services
+        app.state.ask_services = {c: AskService(s, provider) for c, s in services.items()}
+        app.state.retrieval_service = retrieval          # V1 default (backward compatible)
+        app.state.ask_service = app.state.ask_services['v1']
         yield
 
     app = FastAPI(title='Singlish Retrieval Engine API', version=SERVICE_VERSION, lifespan=lifespan,
@@ -41,6 +53,8 @@ def create_app(settings: Settings | None = None, engine=None, llm_provider: LLMP
     app.state.settings = settings
     app.state.retrieval_service = None
     app.state.ask_service = None
+    app.state.retrieval_services = {}
+    app.state.ask_services = {}
 
     @app.middleware('http')
     async def add_request_id(request: Request, call_next):
